@@ -1,9 +1,14 @@
 drop table gymBro_does_exercises;
 drop table involves;
-drop table exercises_has;
 drop table bodyPart_for;
 drop table bodyPart;
+drop table pt_does_dayOfWorkout;
+drop table g_does_dayOfWorkout;
+drop table dayOfWorkoutDate;
+drop table workout_has;
+drop table dayOfWorkout;
 drop table workout;
+drop table exercises;
 drop table trains;
 drop table personalTrainer;
 drop table gymBro;
@@ -45,6 +50,16 @@ create table workout
 create table bodyPart
 	( type varchar2(40) PRIMARY KEY );
 
+create table exercises
+	( name varchar2(40) PRIMARY KEY );
+
+create table workout_has
+	( workoutId integer,
+	name varchar2(40),
+	PRIMARY KEY (workoutId, name),
+	foreign key (workoutId) references workout,
+	foreign key (name) references exercises );
+
 create table bodyPart_for
 	( type varchar2(40),
 	workoutId integer,
@@ -52,10 +67,36 @@ create table bodyPart_for
 	foreign key (type) references bodyPart,
 	foreign key (workoutId) references workout );
 
-create table exercises_has
-	( name varchar2(40) PRIMARY KEY,
+create table dayOfWorkout
+	( nameOfDay char(3),
 	workoutId integer,
+	specificWorkoutId integer,
+	PRIMARY KEY (workoutId, specificWorkoutId),
 	foreign key (workoutId) references workout );
+
+create table pt_does_dayOfWorkout
+	( workoutId integer,
+	specificWorkoutId integer,
+	pid integer,
+	dateOfEntry date,
+	PRIMARY KEY ( workoutId, specificWorkoutId, dateOfEntry),
+	foreign key (pid) references personalTrainer,
+	foreign key (workoutId, specificWorkoutId) references dayOfWorkout );
+
+
+create table g_does_dayOfWorkout
+	( workoutId integer,
+	specificWorkoutId integer,
+	gid integer,
+	dateOfEntry date,
+	PRIMARY KEY ( workoutId, specificWorkoutId, dateOfEntry),
+	foreign key (gid) references gymBro,
+	foreign key (workoutId, specificWorkoutId) references dayOfWorkout );
+
+create table dayOfWorkoutDate
+	( dateOfEntry date PRIMARY KEY,
+	nameOfDay char(3) );
+
 
 create table gymBro_does_exercises
 	( gid integer,
@@ -67,7 +108,7 @@ create table gymBro_does_exercises
 	weight integer,
 	PRIMARY KEY (gid, name),
 	foreign key (gid) references gymBro,
-	foreign key (name) references exercises_has );
+	foreign key (name) references exercises );
 
 create table equipment
 	(name varchar2(40) PRIMARY KEY );
@@ -77,7 +118,7 @@ create table involves
 	exName varchar2(40),
 	PRIMARY KEY (equipName, exName),
 	foreign key (equipName) references equipment,
-	foreign key (exName) references exercises_has );
+	foreign key (exName) references exercises );
 
 insert into personalTrainer values
 	( 10000000, 'Arnold Schwarzenegger', 'M', 39, 6045798123, 'arnoldschwarzenegger@gmail.com', 250.6);
@@ -145,16 +186,27 @@ insert into bodyPart_for values
 insert into bodyPart_for values
 	( 'deltoids', 30000004);
 
-insert into exercises_has values
-	( 'bench press', 30000000);
-insert into exercises_has values
-	( 'squats', 30000001);
-insert into exercises_has values
-	( 'arm curls', 30000002);
-insert into exercises_has values
-	( 'close-grip benchpress', 30000003);
-insert into exercises_has values
-	( 'military press', 30000004);
+insert into exercises values
+	( 'bench press');
+insert into exercises values
+	( 'squats');
+insert into exercises values
+	( 'arm curls');
+insert into exercises values
+	( 'close-grip benchpress');
+insert into exercises values
+	( 'military press');
+
+insert into workout_has values
+	( 30000000, 'bench press');
+insert into workout_has values
+	( 30000001,'squats');
+insert into workout_has values
+	( 30000002, 'arm curls');
+insert into workout_has values
+	( 30000003, 'close-grip benchpress');
+insert into workout_has values
+	( 30000004, 'military press');
 
 insert into gymBro_does_exercises values
 	( 20000000, 'squats', 300, TO_DATE('31-MAY-2016', 'DD-MM-YYYY'), 5, 5, 250);
@@ -188,3 +240,59 @@ insert into involves values
 	( 'barbell', 'close-grip benchpress');
 insert into involves values
 	( 'barbell', 'military press');
+
+insert into dayOfWorkout values
+	( 'MON', 30000000, 40000000);
+insert into dayOfWorkout values
+	( 'TUE', 30000000, 40000001);
+insert into dayOfWorkout values
+	( 'WED', 30000000, 40000002);
+insert into dayOfWorkout values
+	( 'THU', 30000000, 40000003);
+insert into dayOfWorkout values
+	( 'FRI', 30000000, 40000004);
+insert into dayOfWorkout values
+	( 'MON', 30000000, 50000000);
+insert into dayOfWorkout values
+	( 'TUE', 30000000, 50000001);
+insert into dayOfWorkout values
+	( 'WED', 30000000, 50000002);
+insert into dayOfWorkout values
+	( 'THU', 30000000, 50000003);
+insert into dayOfWorkout values
+	( 'FRI', 30000000, 50000004);
+
+
+insert into pt_does_dayOfWorkout values
+	( 30000000, 40000000, 10000000, TO_DATE('31-MAY-2016', 'DD-MM-YYYY'));
+insert into pt_does_dayOfWorkout values
+	( 30000000, 40000001, 10000001, TO_DATE('31-MAY-2016', 'DD-MM-YYYY'));
+insert into pt_does_dayOfWorkout values
+	( 30000000, 40000002, 10000002, TO_DATE('31-MAY-2016', 'DD-MM-YYYY'));
+insert into pt_does_dayOfWorkout values
+	( 30000000, 40000003, 10000003, TO_DATE('31-MAY-2016', 'DD-MM-YYYY'));
+insert into pt_does_dayOfWorkout values
+	( 30000000, 40000004, 10000004, TO_DATE('31-MAY-2016', 'DD-MM-YYYY'));
+
+
+insert into g_does_dayOfWorkout values
+	( 30000000, 50000000, 20000000, TO_DATE('31-MAY-2016', 'DD-MM-YYYY'));
+insert into g_does_dayOfWorkout values
+	( 30000000, 50000001, 20000001, TO_DATE('31-MAY-2016', 'DD-MM-YYYY'));
+insert into g_does_dayOfWorkout values
+	( 30000000, 50000002, 20000002, TO_DATE('31-MAY-2016', 'DD-MM-YYYY'));
+insert into g_does_dayOfWorkout values
+	( 30000000, 50000003, 20000003, TO_DATE('31-MAY-2016', 'DD-MM-YYYY'));
+insert into g_does_dayOfWorkout values
+	( 30000000, 50000004, 20000004, TO_DATE('31-MAY-2016', 'DD-MM-YYYY'));
+
+insert into dayOfWorkoutDate values
+	( TO_DATE('31-MAY-2016', 'DD-MM-YYYY'), 'TUE');
+insert into dayOfWorkoutDate values
+	( TO_DATE('01-JUNE-2016', 'DD-MM-YYYY'), 'WED');
+insert into dayOfWorkoutDate values
+	( TO_DATE('02-JUNE-2016', 'DD-MM-YYYY'), 'THU');
+insert into dayOfWorkoutDate values
+	( TO_DATE('03-JUNE-2016', 'DD-MM-YYYY'), 'FRI');
+insert into dayOfWorkoutDate values
+	( TO_DATE('04-JUNE-2016', 'DD-MM-YYYY'), 'SAT');
