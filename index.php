@@ -26,7 +26,25 @@
       <![endif]-->
     </head>
     <body>
-      <h1>Always On My Grind</h1>
+
+      <div class="col-md-6">
+        <h1 class="title">Always On My Grind</h1>
+      </div>
+      <div class="col-md-6">
+        <h1 class="login"><button type="button" class="btn-lg btn-danger" id="show_login" value="Show Login">Log in</button></h1>
+      </div>
+
+      <center>
+
+        <form id="loginform" method = "post" action = "login.php">
+          <p>Login to see your workouts</p>
+            <i class="fa fa-close" id = "close_login"></i>
+            <input type = "text" id = "login" placeholder = "Username" name = "uid">
+            <input type = "password" id = "password" name = "upass" placeholder = "***">
+            <input type = "submit" id = "dologin" value = "Login">
+          </form>
+
+      </center>
 
       <div class="col-md-6">
         <h3 class="lg-txt">Let's build a <br>better you.</h3>
@@ -40,7 +58,7 @@
         <h3 class="lg-txt">Sign Up</h3>
 
         <form id="regForm" action="submit.php" method="post">
-          
+
           <div class="col-md-6 spacing">
             <input type="text" class="fld" name="fname" value="" placeholder="First Name">
           </div>
@@ -73,5 +91,8 @@
 
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <script src="js/bootstrap.min.js"></script>
+
+      <!-- Login Javascipt -->
+      <script src="js/login.js"></script>
     </body>
     </html>
