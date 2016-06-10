@@ -1,0 +1,45 @@
+.checklist {
+
+	text-align: center;
+	padding-top: 2em;
+	font-style: italic;
+	font-size: 2.5em;
+	padding-top: 1em;
+}
+
+.lg-txt {
+	font-weight: bold;
+	font-size: 3em;
+}
+
+.fld {
+	padding: 17px;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	font-size: 1.5em;
+	border: 1px solid #ff9999;
+	width: 100%;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.spacing {
+    margin-bottom: 15px;
+}
+
+body {
+	font-family: 'Cabin', sans-serif;
+}
+
+h1 {
+	padding-left: 1em;
+}
+
+h3 {
+	padding-top: 0.5em;
+	text-align: center;
+}
+
+
