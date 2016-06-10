@@ -26,7 +26,7 @@
       <![endif]-->
     </head>
     <body>
-      <h1>Always On My Grind AOMG</h1>
+      <h1>Always On My Grind AOMGAOMG</h1>
 
       <div class="col-md-6">
         <h3 class="lg-txt">Let's build a <br>better you.</h3>
