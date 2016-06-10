@@ -26,7 +26,6 @@
       <![endif]-->
     </head>
     <body>
-<<<<<<< HEAD
 
       <div class="col-md-6">
         <h1 class="title">Always On My Grind</h1>
@@ -46,9 +45,6 @@
           </form>
 
       </center>
-=======
-      <h1>Always On My Grind AOMGAOMG</h1>
->>>>>>> 371c08c6ef1fda0bd33fdb647631bc7e244042cc
 
       <div class="col-md-6">
         <h3 class="lg-txt">Let's build a <br>better you.</h3>
