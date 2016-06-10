@@ -40,7 +40,7 @@
           <p>Login to see your workouts</p>
             <i class="fa fa-close" id = "close_login"></i>
             <input type = "text" id = "login" placeholder = "Username" name = "uid">
-            <input type = "password" id = "password" name = "upass" placeholder = "***">
+            <input type = "password" id = "password" name = "upass" placeholder = "Password">
             <input type = "submit" id = "dologin" value = "Login">
           </form>
 
