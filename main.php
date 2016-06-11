@@ -34,54 +34,16 @@
         <h1 class="login"><button type="button" class="btn-lg btn-danger" id="logout">Log out</button></h1>
       </div>
 
-      <center>
+      
 
-        <form id="loginform" method = "post" action = "login.php">
-          <p>Login to see your workouts</p>
-            <i class="fa fa-close" id = "close_login"></i>
-            <input type = "text" id = "login" placeholder = "Username" name = "uid">
-            <input type = "password" id = "password" name = "upass" placeholder = "Password">
-            <input type = "submit" id = "dologin" value = "Login">
-          </form>
 
-      </center>
 
-      <div class="col-md-6">
-        <h3 class="lg-txt">Let's build a <br>better you.</h3>
-        <div class="checklist">
-          <i class="fa fa-check"></i>Manage your workouts<br><br>
-          <i class="fa fa-check"></i>Find helpful trainers<br><br>
-          <i class="fa fa-check"></i>Achieve your goals
-        </div> 
-      </div>
-      <div class="col-md-6">
-        <h3 class="lg-txt">Sign Up</h3>
 
-        <form id="regForm" action="submit.php" method="post">
 
-          <div class="col-md-6 spacing">
-            <input type="text" class="fld" name="fname" value="" placeholder="First Name">
-          </div>
 
-          <div class="col-md-6 spacing">
-            <input type="text" class="fld" name="lname" value="" placeholder="Last Name">
-          </div>
-          <div class="col-md-12 spacing">
-            <input type="text" class="fld" name="email" value="" placeholder="Your email address">
-          </div>
-          <div class="col-md-12 spacing">
-            <input type="text" class="fld" name="username" value="" placeholder="Pick a username">
-          </div>
-          <div class="col-md-12 spacing">
-            <input type="text" class="fld" name="password" value="" placeholder="Create a password">
-          </div>
-          <div class="wrapper">
-            <button type="button" class="btn-lg btn-danger">Sign up!</button>
-          </div>
 
-        </form>
 
-      </div>
+
 
 
 

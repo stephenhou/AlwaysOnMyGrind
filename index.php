@@ -1,3 +1,9 @@
+<?php
+  require 'Sign-up.php';
+  echo "works";
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +63,7 @@
       <div class="col-md-6">
         <h3 class="lg-txt">Sign Up</h3>
 
-        <form id="regForm" action="submit.php" method="post">
+        <form id="regForm" action="submitsignup.php" method="post">
 
           <div class="col-md-6 spacing">
             <input type="text" class="fld" name="fname" value="" placeholder="First Name">

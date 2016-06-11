@@ -134,15 +134,15 @@ insert into personalTrainer values
 	( 10000004, 'Jay Cutler', 'M', 39, 6045798123, 'JayCutler@gmail.com', 249.9);
 
 insert into gymBro values
-	( 20000000, 'Stephen Hou', stephen_hou, abcdefg, 'M', 19, 6045798123, 'stephenhou@gmail.com', 165.0);
+	( 20000000, 'Stephen Hou', 'stephen_hou', 'abcdefg', 'M', 19, 6045798123, 'stephenhou@gmail.com', 165.0);
 insert into gymBro values
-	( 20000001, 'Andrew Oh', andrew_oh, bzcfqre 'M', 19, 6045798123, 'andrewoh@gmail.com', 180.0);
+	( 20000001, 'Andrew Oh', 'andrew_oh', 'bzcfqre', 'M', 19, 6045798123, 'andrewoh@gmail.com', 180.0);
 insert into gymBro values
-	( 20000002, 'Liu Fangzhong', liu_fangzhong, abaoerwe, ’M’, 19, 6045798123, 'liufangzhong@gmail.com', 165.3);
+	( 20000002, 'Liu Fangzhong', 'liu_fangzhong', 'abaoerwe', 'M', 19, 6045798123, 'liufangzhong@gmail.com', 165.3);
 insert into gymBro values
-	( 20000003, 'Kanye West', kanye_west, adfbbadf, 'M', 40, 6045798123, 'yeezy@gmail.com', 160.8);
+	( 20000003, 'Kanye West', 'kanye_west', 'adfbbadf', 'M', 40, 6045798123, 'yeezy@gmail.com', 160.8);
 insert into gymBro values
-	( 20000004, 'Kevin Hart', kevin_hart, adflbaabdf, ’M’, 36, 6045798123, 'kevhart@gmail.com', 92.3);
+	( 20000004, 'Kevin Hart', 'kevin_hart', 'adflbaabdf', 'M', 36, 6045798123, 'kevhart@gmail.com', 92.3);
 
 insert into trains values
 	( TO_DATE('31-MAY-2016', 'DD-MM-YYYY'), '14:30', 'good', 5, 'bench 500 or dont come back', 10000000, 20000000);
