@@ -36,7 +36,7 @@
         <h1 class="title">AOMG</h1>
       </div>
       <div class="col-md-6">
-        <h1 class="login"><button type="button" class="btn-lg btn-danger" id="logout">Log out</button></h1>
+        <h1 class="login"><button type="button" class="btn-lg btn-danger" id="logout">Log Out</button></h1>
       </div>
 
 
@@ -78,7 +78,7 @@
           </div class>
 
           <div class="wrapper col-md-12">
-            <button type="submit" class="btn-lg btn-danger">Finish sign up!</button>
+            <button type="submit" class="btn-lg btn-danger">Finish Sign Up!</button>
           </div>
 
         </form>

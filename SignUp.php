@@ -108,7 +108,7 @@ if (array_key_exists('signupsubmit', $_POST)) {
 */
 $tuple = array (
 ":bind0" => generateUniqueId($number),
-":bind1" => $_POST['fname'].''.$_POST['lname'],
+":bind1" => $_POST['fname']. ''.$_POST['lname'],
 ":bind2" => $_POST['email'],
 ":bind3" => $_POST['username'],
 ":bind4" => $_POST['password'],

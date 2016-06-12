@@ -41,7 +41,7 @@
             <i class="fa fa-close" id = "close_login"></i>
             <input type = "text" id = "login" placeholder = "Username" name = "uid">
             <input type = "password" id = "password" name = "upass" placeholder = "Password">
-            <input type = "submit" id = "dologin" value = "Login">
+            <input type = "submit" id = "dologin" value = "Login" name="loginsubmit">
           </form>
 
       </center>
@@ -73,7 +73,7 @@
             <input type="text" class="fld" name="username" placeholder="Pick a username">
           </div>
           <div class="col-md-12 spacing">
-            <input type="text" class="fld" name="password" placeholder="Create a password">
+            <input type="password" class="fld" name="password" placeholder="Create a password">
           </div>
           <div class="wrapper">
             <input type="submit" value="Sign Up!" class="btn-lg btn-danger" name="signupsubmit"></input>
