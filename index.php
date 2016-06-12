@@ -1,9 +1,3 @@
-<?php
-  require 'Sign-up.php';
-  echo "works";
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,23 +60,23 @@
         <form id="regForm" action="submitsignup.php" method="post">
 
           <div class="col-md-6 spacing">
-            <input type="text" class="fld" name="fname" value="" placeholder="First Name">
+            <input type="text" class="fld" name="fname" placeholder="First Name">
           </div>
 
           <div class="col-md-6 spacing">
-            <input type="text" class="fld" name="lname" value="" placeholder="Last Name">
+            <input type="text" class="fld" name="lname" placeholder="Last Name">
           </div>
           <div class="col-md-12 spacing">
-            <input type="text" class="fld" name="email" value="" placeholder="Your email address">
+            <input type="text" class="fld" name="email" placeholder="Your email address">
           </div>
           <div class="col-md-12 spacing">
-            <input type="text" class="fld" name="username" value="" placeholder="Pick a username">
+            <input type="text" class="fld" name="username" placeholder="Pick a username">
           </div>
           <div class="col-md-12 spacing">
-            <input type="text" class="fld" name="password" value="" placeholder="Create a password">
+            <input type="text" class="fld" name="password" placeholder="Create a password">
           </div>
           <div class="wrapper">
-            <button type="button" class="btn-lg btn-danger">Sign up!</button>
+            <input type="submit" value="Sign Up!" class="btn-lg btn-danger" name="signupsubmit"></input>
           </div>
 
         </form>

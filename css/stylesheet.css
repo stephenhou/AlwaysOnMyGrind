@@ -41,6 +41,11 @@
 	font-weight: bold;
 	font-size: 4em;
 }
+.centerfield {
+   align-content: center;
+   text-align:center;
+   align-items: center;
+}
 
 body {
 	font-family: 'Cabin', sans-serif;
