@@ -1,5 +1,5 @@
 <?php
-    ini_set('session.save_path', '/home/x/x3b0b/public_html/session');
+    ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
     session_start();
     /**
      * Created by PhpStorm.
@@ -78,13 +78,11 @@
     }
     function printResult($result) { //prints results from a select statement
         while (($row = oci_fetch_array($result)) != false) {
+            echo "<p class=\"wrapper\">";
             echo $row[0];
-<<<<<<< HEAD
+            echo "</p>";
         }       
         
-=======
-        }
->>>>>>> d6f9238db0d238d5e12aa833f30325c852648b92
     }
     if ($db_conn) {
         if (array_key_exists('nameandage', $_POST)) {
@@ -103,13 +101,12 @@
                 header("location: mytrainers.php");
                 exit;
             }
-<<<<<<< HEAD
+
             
-=======
->>>>>>> d6f9238db0d238d5e12aa833f30325c852648b92
+
         }
         else if (array_key_exists('emailandweight', $_POST)) {
-            $stid = oci_parse($db_conn, "select email from personalTrainer where weight = :bind0");
+            $stid = oci_parse($db_conn, "select email from personalTrainer where weight > :bind0");
             
             oci_bind_by_name($stid, ":bind0", $_POST['weight']);
             oci_execute($stid);

@@ -1,5 +1,5 @@
 <?php
-ini_set('session.save_path', '/home/x/x3b0b/public_html/session');
+ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
 session_start();
 
 include 'Selection_Projection.php';
@@ -80,7 +80,7 @@ $ew = $_SESSION['ew'];
 
   	<div class="col-md-6">
        	<h3 class="lg-txt">Find a Trainer by Age</h3>
-          <form class="wrapper" method="post">
+          <form class="wrapper spacing" method="post">
             <select type="number" name="age">
               <option value=20>20</option>
               <option value=25>25</option>
@@ -94,16 +94,15 @@ $ew = $_SESSION['ew'];
             </select>
             <input type="submit" value="Submit" name="nameandage">
           </form>
-          <?PHP printResult($na);
-          ?>
+          <?PHP printResult($na);?>
           
     </div>
 
 
     <div class="col-md-6">
-        <h3 class="lg-txt">Find a Trainer Email by Weight</h3>
-          <form class="wrapper" action="mytrainers.php" method="post">
-            <select name="weight">
+        <h3 class="lg-txt">Find a Trainer's Email by Weight</h3>
+          <form class="wrapper spacing" method="post">
+            <select type="number" name="weight">
               <option value=180>180</option>
               <option value=190>190</option>
               <option value=210>210</option>

@@ -1,12 +1,9 @@
 <?php
-    /**
-     * Created by PhpStorm.
-     * User: joohan0311
-     * Date: 2016-06-12
-     * Time: 6:16 PM
-     */
     ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
     session_start();
+    $gid = $_SESSION['gid'];
+
+
     $success = True;
     $db_conn = OCILogon("ora_x3b0b", "a15055149", "ug");
     function executePlainSQL($cmdstr) {
@@ -72,27 +69,28 @@
         }
     }
     function printResult($result) { //prints results from a select statement
+
         while (($row = oci_fetch_array($result)) != false) {
+            echo "<p class=\"wrapper\">";
             echo $row[0];
-        }
+            echo "</p>";
+        }       
+        
     }
     if ($db_conn) {
         if (array_key_exists('exName_equipName', $_POST)) {
             // Join Involves and gymBro_does_exercises tables to query all the exercises that require this particular equipment!
-            $stid = oci_parse($db_conn, "select DISTINCT exName from involves, gymBro_does_exercises where equipName = :bind0 and gid = :bind1");
+            $stid = oci_parse($db_conn, "select DISTINCT exName from involves, gymBro_does_exercises where equipName = :bind0 and gid = :bind1 and name = exName");
             
             oci_bind_by_name($stid, ":bind0", $_POST['equipName']);
-            oci_bind_by_name($stid, ":bind1", $_SESSION['gid']);
+            oci_bind_by_name($stid, ":bind1", $gid);
             oci_execute($stid);
-            
-            $_SESSION['na'] = $stid;
+   
+            $_SESSION['exFromEquip'] = $stid;
             
             if($result) {
                 // PRINT $result
                 header("location: myexercises.php");
-                exit;
-            }
-            else {
                 exit;
             }
         }
@@ -106,5 +104,3 @@
         echo htmlentities($e['message']);
     }
 ?>
-
-
