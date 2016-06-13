@@ -105,12 +105,11 @@ create table dayOfWorkoutDate
 create table gymBro_does_exercises
 	( gid integer,
 	name varchar2(40),
-	pRecord integer,
 	recordedDate date,
 	sets integer,
 	reps integer,
 	weight integer,
-	PRIMARY KEY (gid, name),
+	PRIMARY KEY (gid, name, recordedDate),
 	foreign key (gid) references gymBro,
 	foreign key (name) references exercises );
 
@@ -167,13 +166,15 @@ insert into bodyPart values ('chest');
 insert into bodyPart values ('arms');
 insert into bodyPart values ('back');
 insert into bodyPart values ('legs');
-insert into bodyPart values ('cardio');
 
 insert into bodyPart_for values ('chest', 30000000);
 insert into bodyPart_for values ('arms', 30000001);
 insert into bodyPart_for values ('back', 30000002);
 insert into bodyPart_for values ('legs', 30000003);
-insert into bodyPart_for values ('cardio', 30000004); 
+insert into bodyPart_for values ('chest', 30000004);
+insert into bodyPart_for values ('arms', 30000004);
+insert into bodyPart_for values ('back', 30000004);
+insert into bodyPart_for values ('legs', 30000004);
 
 insert into exercises values ('Dumbbell press');
 insert into exercises values ('Incline Dumbbell press');
@@ -218,26 +219,46 @@ insert into workout_has values (30000004, 'Treadmill');
 insert into workout_has values (30000004, 'Bike');
 insert into workout_has values (30000004, 'Swimming');
 
-insert into gymBro_does_exercises  values (20000004, 'Dumbbell press', 1000, TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Incline Dumbbell press', 900, TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Decline Dumbbell press', 800, TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Incline Bench press', 700, TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Decline Bench press', 600, TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Cable cross', 500, TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Dumbbell curls', 1000, TO_DATE('13-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Barbell curls', 900, TO_DATE('13-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Cable curls', 800, TO_DATE('13-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Rope push-downs', 700, TO_DATE('13-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Deadlifts', 1000, TO_DATE('14-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Chin-ups', 900, TO_DATE('14-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Cable Pull-downs', 800, TO_DATE('14-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Back machine', 700, TO_DATE('14-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Lunges', 1000, TO_DATE('15-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Squats', 900, TO_DATE('15-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Leg Press', 800, TO_DATE('15-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Treadmill', 1000, TO_DATE('16-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Bike', 900, TO_DATE('16-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
-insert into gymBro_does_exercises  values (20000004, 'Swimming', 800, TO_DATE('16-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
+insert into gymBro_does_exercises  values (20000004, 'Dumbbell press', TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
+insert into gymBro_does_exercises  values (20000004, 'Dumbbell press', TO_DATE('19-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 150);
+insert into gymBro_does_exercises  values (20000004, 'Incline Dumbbell press', TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 240);
+insert into gymBro_does_exercises  values (20000004, 'Incline Dumbbell press', TO_DATE('19-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 230);
+insert into gymBro_does_exercises  values (20000004, 'Decline Dumbbell press', TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 190);
+insert into gymBro_does_exercises  values (20000004, 'Decline Dumbbell press', TO_DATE('19-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 200);
+insert into gymBro_does_exercises  values (20000004, 'Incline Bench press', TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 320);
+insert into gymBro_does_exercises  values (20000004, 'Incline Bench press', TO_DATE('19-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 300);
+insert into gymBro_does_exercises  values (20000004, 'Decline Bench press', TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 150);
+insert into gymBro_does_exercises  values (20000004, 'Decline Bench press', TO_DATE('19-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 130);
+insert into gymBro_does_exercises  values (20000004, 'Cable cross', TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 305);
+insert into gymBro_does_exercises  values (20000004, 'Cable cross', TO_DATE('19-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 335);
+insert into gymBro_does_exercises  values (20000004, 'Dumbbell curls', TO_DATE('13-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 330);
+insert into gymBro_does_exercises  values (20000004, 'Dumbbell curls', TO_DATE('20-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 315);
+insert into gymBro_does_exercises  values (20000004, 'Barbell curls', TO_DATE('13-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 190);
+insert into gymBro_does_exercises  values (20000004, 'Barbell curls', TO_DATE('20-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 225);
+insert into gymBro_does_exercises  values (20000004, 'Cable curls', TO_DATE('13-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 245);
+insert into gymBro_does_exercises  values (20000004, 'Cable curls', TO_DATE('20-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 235);
+insert into gymBro_does_exercises  values (20000004, 'Rope push-downs', TO_DATE('13-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
+insert into gymBro_does_exercises  values (20000004, 'Rope push-downs', TO_DATE('20-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 190);
+insert into gymBro_does_exercises  values (20000004, 'Deadlifts', TO_DATE('14-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 120);
+insert into gymBro_does_exercises  values (20000004, 'Deadlifts', TO_DATE('21-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 140);
+insert into gymBro_does_exercises  values (20000004, 'Chin-ups', TO_DATE('14-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 130);
+insert into gymBro_does_exercises  values (20000004, 'Chin-ups', TO_DATE('21-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 150);
+insert into gymBro_does_exercises  values (20000004, 'Cable Pull-downs', TO_DATE('14-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 150);
+insert into gymBro_does_exercises  values (20000004, 'Cable Pull-downs', TO_DATE('21-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 160);
+insert into gymBro_does_exercises  values (20000004, 'Back machine', TO_DATE('14-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 175);
+insert into gymBro_does_exercises  values (20000004, 'Back machine', TO_DATE('21-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 185);
+insert into gymBro_does_exercises  values (20000004, 'Lunges', TO_DATE('15-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 200);
+insert into gymBro_does_exercises  values (20000004, 'Lunges', TO_DATE('22-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 195);
+insert into gymBro_does_exercises  values (20000004, 'Squats', TO_DATE('15-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 400);
+insert into gymBro_does_exercises  values (20000004, 'Squats', TO_DATE('22-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 390);
+insert into gymBro_does_exercises  values (20000004, 'Leg Press', TO_DATE('15-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 300);
+insert into gymBro_does_exercises  values (20000004, 'Leg Press', TO_DATE('22-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 225);
+insert into gymBro_does_exercises  values (20000004, 'Treadmill', TO_DATE('16-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 210);
+insert into gymBro_does_exercises  values (20000004, 'Treadmill', TO_DATE('23-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 220);
+insert into gymBro_does_exercises  values (20000004, 'Bike', TO_DATE('16-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 100);
+insert into gymBro_does_exercises  values (20000004, 'Bike', TO_DATE('23-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 105);
+insert into gymBro_does_exercises  values (20000004, 'Swimming', TO_DATE('16-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 135);
+insert into gymBro_does_exercises  values (20000004, 'Swimming', TO_DATE('23-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 150);
 
 insert into equipment values ('bench');
 insert into equipment values ('squat rack');

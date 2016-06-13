@@ -72,15 +72,9 @@
         }
     }
     function printResult($result) { //prints results from a select statement
-        echo "<br>Got data from table tab1:<br>";
-        echo "<table>";
-        echo "<tr><th>ID</th><th>Name</th></tr>";
-        
-        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-            echo "<tr><td>" . $row["NID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]"
+        while (($row = oci_fetch_array($result)) != false) {
+            echo $row[0];
         }
-        echo "</table>";
-        
     }
     if ($db_conn) {
         if (array_key_exists('exName_equipName', $_POST)) {
@@ -90,7 +84,8 @@
             oci_bind_by_name($stid, ":bind0", $_POST['equipName']);
             oci_bind_by_name($stid, ":bind1", $_SESSION['gid']);
             oci_execute($stid);
-            $result = oci_fetch_array($stid);
+            
+            $_SESSION['na'] = $stid;
             
             if($result) {
                 // PRINT $result
