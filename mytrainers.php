@@ -1,5 +1,5 @@
 <?php
-ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
+ini_set('session.save_path', '/home/x/x3b0b/public_html/session');
 session_start();
 
 include 'Selection_Projection.php';

@@ -1,17 +1,12 @@
 <?php
-    ini_set('session.save_path', '/home/x/x3b0b/public_html/session');
-    session_start();
     /**
      * Created by PhpStorm.
      * User: joohan0311
      * Date: 2016-06-12
-     * Time: 5:43 PM
+     * Time: 10:49 PM
      */
-    /** this tells the system that it's no longer just parsing
-     * html; it's now parsing PHP
-     * keep track of errors so it redirects the page only if there are no errors
-     */
-    
+    ini_set('session.save_path', '/home/w/x3b0b/public_html/session');
+    session_start();
     $success = True;
     $db_conn = OCILogon("ora_x3b0b", "a15055149", "ug");
     function executePlainSQL($cmdstr) {
@@ -79,46 +74,19 @@
     function printResult($result) { //prints results from a select statement
         while (($row = oci_fetch_array($result)) != false) {
             echo $row[0];
-<<<<<<< HEAD
-        }       
-        
-=======
         }
->>>>>>> d6f9238db0d238d5e12aa833f30325c852648b92
     }
     if ($db_conn) {
-        if (array_key_exists('nameandage', $_POST)) {
-            
-            //Select Name from Personal Trainer where age ($_POST) = 19
-            //Select Email Address from Personal Trainer where weight ($_POST) > 20
-            $stid = oci_parse($db_conn, "select fullname from personalTrainer where age > :bind0");
-            
-            oci_bind_by_name($stid, ":bind0", $_POST['age']);
+        if (array_key_exists('personal_record', $_POST)) {
+            // Find exercises that involves all the body parts
+            // Select exercise name such that there is no bodypart type which is not involved in the particular exercise
+            $stid = oci_parse($db_conn, "select MAX(weight), name from gymbro_does_exercises group by name");
             oci_execute($stid);
+            $_SESSION['pr'] = $stid;
             
-            $_SESSION['na'] = $stid;
-            
-            if($result) {
+            if ($result) {
                 // PRINT $result
-                header("location: mytrainers.php");
-                exit;
-            }
-<<<<<<< HEAD
-            
-=======
->>>>>>> d6f9238db0d238d5e12aa833f30325c852648b92
-        }
-        else if (array_key_exists('emailandweight', $_POST)) {
-            $stid = oci_parse($db_conn, "select email from personalTrainer where weight = :bind0");
-            
-            oci_bind_by_name($stid, ":bind0", $_POST['weight']);
-            oci_execute($stid);
-            
-            $_SESSION['ew'] = $stid;
-            
-            if($result) {
-                // PRINT $result
-                header("location: mytrainers.php");
+                header("location: myexercises.php");
                 exit;
             }
         }
