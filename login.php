@@ -90,6 +90,18 @@ session_start();
 
     if ($db_conn) {
         if (array_key_exists('loginsubmit', $_POST)) {
+            /**
+            $tuple = array (
+                            ":bind0" => $_POST['username'],
+                            ":bind1" => $_POST['password'],
+                            );
+            $alltuples = array (
+                                $tuple
+                                );
+            executeBoundSQL("select username, password from gymBro where username = :bind0 and password = :bind1", $alltuples);
+            
+            OCICommit($db_conn);
+            */
             $stid = oci_parse($db_conn, "select gid from gymBro where username = :bind0 and password = :bind1");
             
             oci_bind_by_name($stid, ":bind0", $_POST['uid']);

@@ -130,7 +130,6 @@ function printResult($result) { //prints results from a select statement
 		echo "<tr><td>" . $row["NID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]" 
 	}
 	echo "</table>";
-
 }
 
 // Connect Oracle...
