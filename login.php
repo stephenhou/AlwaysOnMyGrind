@@ -1,4 +1,8 @@
 <?php
+ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
+session_start();
+
+
     /**
      * Created by PhpStorm.
      * User: joohan0311
@@ -101,7 +105,7 @@
             
             OCICommit($db_conn);
             */
-
+            $_SESSION['gid'] = $_POST['uid'];
             $stid = oci_parse($db_conn, "select gid from gymBro where username = :bind0 and password = :bind1");
             
             oci_bind_by_name($stid, ":bind0", $_POST['uid']);
@@ -109,17 +113,15 @@
             
             oci_execute($stid);
             $result = oci_fetch_array($stid);
-
+            
             if($result) {
-
-                /**
-                session_start();
-                $_SESSION['gid'] = $gid
-*/
+                $_SESSION['gid'] = $result[0];
                 header("location: main.php");
+                exit;
             }
             else {
                 header("location: index.php");
+                exit;
             }
         }
             /**

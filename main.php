@@ -1,9 +1,11 @@
 <?php
-include 'login.php'
-/**
+ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
 session_start();
+
+include 'login.php';
+
 $gid = $_SESSION['gid'];
-*/
+
 ?>
 
 <!DOCTYPE html>
@@ -76,19 +78,19 @@ $gid = $_SESSION['gid'];
 
   	<div class="col-md-6">
        	<h3 class="lg-txt" id="today"></h3>
-    </div> 
-
+        <!--
+        <?php
+          //include 'getworkoutandgoals.php'
+        ?>
+        <h4><?php //echo $param; ?></h4>
+       -->
+        
+    </div>
 
 
     <div class="col-md-6">
         <h3 class="lg-txt">Today's Goals</h3>
     </div>
-
-
-
-
-
-
 
 
 

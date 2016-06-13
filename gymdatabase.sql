@@ -134,7 +134,7 @@ insert into personalTrainer values
 	( 10000004, 'Jay Cutler', 'M', 39, 6045798123, 'JayCutler@gmail.com', 249.9);
 
 insert into gymBro values
-	( 20000000, 'Stephen Hou', 'stephen_hou', 'abcdefg', 'M', 19, 6045798123, 'stephenhou@gmail.com', 165.0);
+	( 20000000, 'Stephen Hou', 'shou', 'go', 'M', 19, 6045798123, 'stephenhou@gmail.com', 165.0);
 insert into gymBro values
 	( 20000001, 'Andrew Oh', 'andrew_oh', 'bzcfqre', 'M', 19, 6045798123, 'andrewoh@gmail.com', 180.0);
 insert into gymBro values
