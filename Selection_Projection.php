@@ -89,11 +89,8 @@
     }
     if ($db_conn) {
         if (array_key_exists('nameandage', $_POST)) {
-            
             //Select Name from Personal Trainer where age ($_POST) = 19
-            //Select Email Address from Personal Trainer where weight ($_POST) > 20
             $stid = oci_parse($db_conn, "select fullname from personalTrainer where age = :bind0");
-            
             oci_bind_by_name($stid, ":bind0", $_POST['age']);
             oci_execute($stid);
             $result = oci_fetch_array($stid);
@@ -104,12 +101,12 @@
                 exit;
             }
             else {
-                
+                exit;
             }
         }
         else if (array_key_exists('emailandweight', $_POST)) {
+            //Select Email Address from Personal Trainer where weight ($_POST) > 20
             $stid = oci_parse($db_conn, "select email from personalTrainer where weight = :bind0");
-            
             oci_bind_by_name($stid, ":bind0", $_POST['weight']);
             oci_execute($stid);
             $result = oci_fetch_array($stid);

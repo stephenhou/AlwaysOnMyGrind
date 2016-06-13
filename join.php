@@ -1,17 +1,12 @@
 <?php
-ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
-session_start();
     /**
      * Created by PhpStorm.
      * User: joohan0311
-     * Date: 2016-06-11
-     * Time: 11:44 PM
+     * Date: 2016-06-12
+     * Time: 6:16 PM
      */
-    /** this tells the system that it's no longer just parsing
-     * html; it's now parsing PHP
-     * keep track of errors so it redirects the page only if there are no errors
-     */
-    
+    ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
+    session_start();
     $success = True;
     $db_conn = OCILogon("ora_x3b0b", "a15055149", "ug");
     function executePlainSQL($cmdstr) {
@@ -73,41 +68,40 @@ session_start();
                 echo "<br>";
                 $success = False;
             }
-
+            
         }
     }
     function printResult($result) { //prints results from a select statement
-    echo "<br>Got data from table tab1:<br>";
-    echo "<table>";
-    echo "<tr><th>ID</th><th>Name</th></tr>";
-
-    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-        echo "<tr><td>" . $row["NID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]" 
+        echo "<br>Got data from table tab1:<br>";
+        echo "<table>";
+        echo "<tr><th>ID</th><th>Name</th></tr>";
+        
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+            echo "<tr><td>" . $row["NID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]"
+        }
+        echo "</table>";
+        
     }
-    echo "</table>";
-
-    }
-
     if ($db_conn) {
-        if (array_key_exists('loginsubmit', $_POST)) {
-            $stid = oci_parse($db_conn, "select gid from gymBro where username = :bind0 and password = :bind1");
+        if (array_key_exists('exName_equipName', $_POST)) {
+            // Join Involves and gymBro_does_exercises tables to query all the exercises that require this particular equipment!
+            $stid = oci_parse($db_conn, "select DISTINCT exName from involves, gymBro_does_exercises where equipName = :bind0 and gid = :bind1");
             
-            oci_bind_by_name($stid, ":bind0", $_POST['uid']);
-            oci_bind_by_name($stid, ":bind1", $_POST['upass']);
-            
+            oci_bind_by_name($stid, ":bind0", $_POST['equipName']);
+            oci_bind_by_name($stid, ":bind1", $_SESSION['gid']);
             oci_execute($stid);
             $result = oci_fetch_array($stid);
             
             if($result) {
-                $_SESSION['gid'] = $result[0];
-                header("location: main.php");
+                // PRINT $result
+                header("location: myexercises.php");
                 exit;
             }
             else {
-                header("location: index.php");
                 exit;
             }
         }
+        /**Commit to save changes... */
         OCILogoff($db_conn);
     }
     else {
@@ -117,4 +111,5 @@ session_start();
         echo htmlentities($e['message']);
     }
 ?>
+
 
