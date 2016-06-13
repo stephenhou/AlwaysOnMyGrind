@@ -2,9 +2,11 @@
 ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
 session_start();
 
-include 'login.php';
+include 'Selection_Projection.php';
 
 $gid = $_SESSION['gid'];
+$na = $_SESSION['na'];
+$ew = $_SESSION['ew'];
 
 ?>
 
@@ -78,8 +80,8 @@ $gid = $_SESSION['gid'];
 
   	<div class="col-md-6">
        	<h3 class="lg-txt">Find a Trainer by Age</h3>
-          <form class="wrapper" action="mytrainers.php" method="post">
-            <select name="age">
+          <form class="wrapper" method="post">
+            <select type="number" name="age">
               <option value=20>20</option>
               <option value=25>25</option>
               <option value=30>30</option>
@@ -92,11 +94,13 @@ $gid = $_SESSION['gid'];
             </select>
             <input type="submit" value="Submit" name="nameandage">
           </form>
+          <?PHP echo $na[0];?>
+          
     </div>
 
 
     <div class="col-md-6">
-        <h3 class="lg-txt">Today's Goals</h3>
+        <h3 class="lg-txt">Find a Trainer Email by Weight</h3>
           <form class="wrapper" action="mytrainers.php" method="post">
             <select name="weight">
               <option value=180>180</option>
@@ -114,6 +118,7 @@ $gid = $_SESSION['gid'];
             </select>
             <input type="submit" value="Submit" name="emailandweight">
           </form>
+          <?PHP printResult($ew); ?>
     </div>
 
 

@@ -77,14 +77,11 @@
         }
     }
     function printResult($result) { //prints results from a select statement
-        echo "<br>Got data from table tab1:<br>";
-        echo "<table>";
-        echo "<tr><th>ID</th><th>Name</th></tr>";
-        
-        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-            echo "<tr><td>" . $row["NID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]"
+       
+        foreach ($result as $value) {
+            echo $value;
         }
-        echo "</table>";
+        
         
     }
     if ($db_conn) {
@@ -92,11 +89,12 @@
             
             //Select Name from Personal Trainer where age ($_POST) = 19
             //Select Email Address from Personal Trainer where weight ($_POST) > 20
-            $stid = oci_parse($db_conn, "select fullname from personalTrainer where age = :bind0");
+            $stid = oci_parse($db_conn, "select fullname from personalTrainer where age > :bind0");
             
             oci_bind_by_name($stid, ":bind0", $_POST['age']);
             oci_execute($stid);
             $result = oci_fetch_array($stid);
+            $_SESSION['na'] = $result;
             
             if($result) {
                 // PRINT $result
@@ -104,7 +102,7 @@
                 exit;
             }
             else {
-                
+                exit;
             }
         }
         else if (array_key_exists('emailandweight', $_POST)) {
@@ -113,6 +111,7 @@
             oci_bind_by_name($stid, ":bind0", $_POST['weight']);
             oci_execute($stid);
             $result = oci_fetch_array($stid);
+            $_SESSION['ew'] = $result;
             
             if($result) {
                 // PRINT $result
