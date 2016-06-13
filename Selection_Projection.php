@@ -1,11 +1,11 @@
 <?php
-ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
-session_start();
+    ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
+    session_start();
     /**
      * Created by PhpStorm.
      * User: joohan0311
-     * Date: 2016-06-11
-     * Time: 11:44 PM
+     * Date: 2016-06-12
+     * Time: 5:43 PM
      */
     /** this tells the system that it's no longer just parsing
      * html; it's now parsing PHP
@@ -73,77 +73,56 @@ session_start();
                 echo "<br>";
                 $success = False;
             }
-
+            
         }
     }
-
     function printResult($result) { //prints results from a select statement
-    echo "<br>Got data from table tab1:<br>";
-    echo "<table>";
-    echo "<tr><th>ID</th><th>Name</th></tr>";
-
-    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-        echo "<tr><td>" . $row["NID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]" 
+        echo "<br>Got data from table tab1:<br>";
+        echo "<table>";
+        echo "<tr><th>ID</th><th>Name</th></tr>";
+        
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+            echo "<tr><td>" . $row["NID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]"
+        }
+        echo "</table>";
+        
     }
-    echo "</table>";
-
-    }
-
     if ($db_conn) {
-        if (array_key_exists('loginsubmit', $_POST)) {
-            /**
-            $tuple = array (
-                            ":bind0" => $_POST['username'],
-                            ":bind1" => $_POST['password'],
-                            );
-            $alltuples = array (
-                                $tuple
-                                );
-            executeBoundSQL("select username, password from gymBro where username = :bind0 and password = :bind1", $alltuples);
+        if (array_key_exists('nameandage', $_POST)) {
             
-            OCICommit($db_conn);
-            */
-            $stid = oci_parse($db_conn, "select gid from gymBro where username = :bind0 and password = :bind1");
+            //Select Name from Personal Trainer where age ($_POST) = 19
+            //Select Email Address from Personal Trainer where weight ($_POST) > 20
+            $stid = oci_parse($db_conn, "select fullname from personalTrainer where age = :bind0");
             
-            oci_bind_by_name($stid, ":bind0", $_POST['uid']);
-            oci_bind_by_name($stid, ":bind1", $_POST['upass']);
-            
+            oci_bind_by_name($stid, ":bind0", $_POST['age']);
             oci_execute($stid);
             $result = oci_fetch_array($stid);
             
             if($result) {
-                $_SESSION['gid'] = $result[0];
-                header("location: main.php");
+                // PRINT $result
+                header("location: mytrainers.php");
                 exit;
             }
             else {
-                header("location: index.php");
+                
+            }
+        }
+        else if (array_key_exists('emailandweight', $_POST)) {
+            $stid = oci_parse($db_conn, "select email from personalTrainer where weight = :bind0");
+            
+            oci_bind_by_name($stid, ":bind0", $_POST['weight']);
+            oci_execute($stid);
+            $result = oci_fetch_array($stid);
+            
+            if($result) {
+                // PRINT $result
+                header("location: mytrainers.php");
+                exit;
+            }
+            else {
                 exit;
             }
         }
-            /**
-
-            $s = OCIparse($db_conn, "select username, password from gymBro where username = :bind0 and password = :bind1");
-    
-            OCIBindByName($s, ":bind0", $_POST['uid']);
-            OCIBindByName($s, ":bind1", $_POST['upass']);
-            
-            $r = OCIExecute($s, OCI_DEFAULT);
-            */
-    /**
-        if (!$r) {
-            // The password matches: the user can use the application
-            // Set the user name to be used as the client identifier in
-            // future HTTP requests:
-            $_SESSION['uid'] = $_POST['uid'];
-            echo "<br>Logged in successfully" . $cmdstr . "<br>";
-            header("location: main.php");
-            exit;
-        } else {
-            echo "<br>Incorrect Username or Password" . $cmdstr . "<br>";
-            header("location: index.php");
-        }
-        */
         /**Commit to save changes... */
         OCILogoff($db_conn);
     }
@@ -154,4 +133,5 @@ session_start();
         echo htmlentities($e['message']);
     }
 ?>
+
 
