@@ -10,6 +10,5 @@ $gid = $_SESSION['gid'];
     	$stid = oci_parse($db_conn, "select ");
 
     }
-
 ?>
 

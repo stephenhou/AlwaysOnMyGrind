@@ -105,7 +105,6 @@ session_start();
             
             OCICommit($db_conn);
             */
-            $_SESSION['gid'] = $_POST['uid'];
             $stid = oci_parse($db_conn, "select gid from gymBro where username = :bind0 and password = :bind1");
             
             oci_bind_by_name($stid, ":bind0", $_POST['uid']);
