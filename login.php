@@ -76,7 +76,6 @@ session_start();
 
         }
     }
-
     function printResult($result) { //prints results from a select statement
     echo "<br>Got data from table tab1:<br>";
     echo "<table>";
@@ -121,30 +120,6 @@ session_start();
                 exit;
             }
         }
-            /**
-
-            $s = OCIparse($db_conn, "select username, password from gymBro where username = :bind0 and password = :bind1");
-    
-            OCIBindByName($s, ":bind0", $_POST['uid']);
-            OCIBindByName($s, ":bind1", $_POST['upass']);
-            
-            $r = OCIExecute($s, OCI_DEFAULT);
-            */
-    /**
-        if (!$r) {
-            // The password matches: the user can use the application
-            // Set the user name to be used as the client identifier in
-            // future HTTP requests:
-            $_SESSION['uid'] = $_POST['uid'];
-            echo "<br>Logged in successfully" . $cmdstr . "<br>";
-            header("location: main.php");
-            exit;
-        } else {
-            echo "<br>Incorrect Username or Password" . $cmdstr . "<br>";
-            header("location: index.php");
-        }
-        */
-        /**Commit to save changes... */
         OCILogoff($db_conn);
     }
     else {
