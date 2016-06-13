@@ -77,11 +77,9 @@
         }
     }
     function printResult($result) { //prints results from a select statement
-       
-        foreach ($result as $value) {
-            echo $value;
-        }
-        
+        while (($row = oci_fetch_array($result)) != false) {
+            echo $row[0];
+        }       
         
     }
     if ($db_conn) {
@@ -93,32 +91,27 @@
             
             oci_bind_by_name($stid, ":bind0", $_POST['age']);
             oci_execute($stid);
-            $result = oci_fetch_array($stid);
-            $_SESSION['na'] = $result;
+            
+            $_SESSION['na'] = $stid;
             
             if($result) {
                 // PRINT $result
                 header("location: mytrainers.php");
                 exit;
             }
-            else {
-                exit;
-            }
+            
         }
         else if (array_key_exists('emailandweight', $_POST)) {
             $stid = oci_parse($db_conn, "select email from personalTrainer where weight = :bind0");
             
             oci_bind_by_name($stid, ":bind0", $_POST['weight']);
             oci_execute($stid);
-            $result = oci_fetch_array($stid);
-            $_SESSION['ew'] = $result;
+            
+            $_SESSION['ew'] = $stid;
             
             if($result) {
                 // PRINT $result
                 header("location: mytrainers.php");
-                exit;
-            }
-            else {
                 exit;
             }
         }
