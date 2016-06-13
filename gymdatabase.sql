@@ -16,9 +16,9 @@ drop table equipment;
 
 create table personalTrainer
 	( pid integer PRIMARY KEY,
+	fullname varchar2(50),	
     username varchar2(50),
     password varchar2(50),
-	fullname varchar2(50),
 	gender char(1),
 	age integer,
 	phone integer,
@@ -27,9 +27,9 @@ create table personalTrainer
 
 create table gymBro
 	( gid integer PRIMARY KEY,
+	fullname varchar2(50),	
 	username varchar2(50),
 	password varchar2(50),
-	fullname varchar2(50),
 	gender char(1),
 	age integer,
 	phone integer,

@@ -94,7 +94,7 @@ $ew = $_SESSION['ew'];
             </select>
             <input type="submit" value="Submit" name="nameandage">
           </form>
-          <?PHP echo $na[0];?>
+          <?PHP printResult($na);?>
           
     </div>
 
