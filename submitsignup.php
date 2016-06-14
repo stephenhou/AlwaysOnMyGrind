@@ -1,5 +1,11 @@
 <?php
+  ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
+  session_start();
+  
   require 'SignUp.php';
+
+  $gid = $_SESSION['gid'];
+
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +84,7 @@
           </div class>
 
           <div class="wrapper col-md-12">
-            <button type="submit" class="btn-lg btn-danger">Finish Sign Up!</button>
+            <button type="submit" class="btn-lg btn-danger" name="addinfo">Finish Sign Up!</button>
           </div>
 
         </form>

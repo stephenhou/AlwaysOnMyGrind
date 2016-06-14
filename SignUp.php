@@ -1,4 +1,6 @@
 <?php
+ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
+session_start();
 /**
 * Created by PhpStorm.
 * User: joohan0311
@@ -106,8 +108,11 @@ if ($db_conn) {
 if (array_key_exists('signupsubmit', $_POST)) {
 /**Getting the values from user and insert data into the table
 */
+$gid = generateUniqueId($number);
+$_SESSION['gid'] = $gid;
+
 $tuple = array (
-":bind0" => generateUniqueId($number),
+":bind0" => $gid,
 ":bind1" => $_POST['fname']. ''.$_POST['lname'],
 ":bind2" => $_POST['email'],
 ":bind3" => $_POST['username'],
@@ -117,7 +122,7 @@ $tuple = array (
 $alltuples = array (
 $tuple
 );
-executeBoundSQL("insert into gymBro values (:bind0, :bind3, :bind4, :bind1, :bind5, :bind5, :bind5, :bind2, :bind5)", $alltuples);
+executeBoundSQL("insert into gymBro values (:bind0, :bind1, :bind3, :bind4, :bind5, :bind5, :bind5, :bind2, :bind5)", $alltuples);
 
 OCICommit($db_conn);
 }
@@ -127,11 +132,9 @@ if ($_POST && $success) {
 /**POST-REDIRECT-GET -- See http://en.wikipedia.org/wiki/Post/Redirect/Get
 */
 header("location: submitsignup.php");
+exit;
 } else {
-/** Select data...
-*/
-$result = executePlainSQL("select * from gymBro");
-//printResult($result);
+
 }
 /**Commit to save changes... */
 OCILogoff($db_conn);
