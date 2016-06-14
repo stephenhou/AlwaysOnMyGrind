@@ -3,9 +3,13 @@ ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
 session_start();
 
 include 'join.php';
+include 'division.php';
+include 'aggregation.php';
 
 $gid = $_SESSION['gid'];
 $exFromEquip = $_SESSION['exFromEquip'];
+$bp = $_SESSION['bp'];
+$pr = $_SESSION['pr'];
 
 ?>
 
@@ -98,26 +102,20 @@ $exFromEquip = $_SESSION['exFromEquip'];
 
 
     <div class="col-md-6">
-        <h3 class="lg-txt">Find a Trainer Email by Weight</h3>
+        <h3 class="lg-txt">Find Exercises that Train Your Whole Body!</h3>
           <form class="wrapper spacing" method="post">
-            <select name="weight">
-              <option value=180>180</option>
-              <option value=190>190</option>
-              <option value=210>210</option>
-              <option value=220>220</option>
-              <option value=230>230</option>
-              <option value=240>240</option>
-              <option value=250>250</option>
-              <option value=260>260</option>
-              <option value=270>270</option>
-              <option value=280>280</option>
-              <option value=290>290</option>
-              <option value=300>300</option>
-            </select>
-            <input type="submit" value="Submit" name="emailandweight">
+            <input type="submit" value="Submit" name="all_bodyparts">
           </form>
-          
+          <?PHP printResult($bp);?>
     </div>
+    <div class="col-md-12">
+        <h3 class="lg-txt">Find Your Personal Records!</h3>
+          <form class="wrapper spacing" method="post">
+            <input type="submit" value="Submit" name="personal_record">
+          </form>
+          <?PHP printResultForAggregation($pr);?>
+    </div>
+
 
 
 
