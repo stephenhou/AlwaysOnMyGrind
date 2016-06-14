@@ -57,7 +57,7 @@ $gid = $_SESSION['gid'];
   						<span class="icon-bar"></span>
   						<span class="icon-bar"></span>
   					</button>
-  					<a class="navbar-brand" href="#">AOMG</a>
+  					<a class="navbar-brand" href="main.php">AOMG</a>
   				</div>
 
   				<!-- Collect the nav links, forms, and other content for toggling -->

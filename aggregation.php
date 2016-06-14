@@ -15,8 +15,7 @@
         while (($row = oci_fetch_array($result)) != false) {
             echo "<p class=\"wrapper\">";
             echo $row[1];
-            echo "</p>";
-            echo "<p class=\"wrapper\">";
+            echo ": ";
             echo $row[0];
             echo "</p>";
         }

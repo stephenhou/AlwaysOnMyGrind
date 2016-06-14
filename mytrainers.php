@@ -59,13 +59,13 @@ $ew = $_SESSION['ew'];
   						<span class="icon-bar"></span>
   						<span class="icon-bar"></span>
   					</button>
-  					<a class="navbar-brand" href="#">AOMG</a>
+  					<a class="navbar-brand" href="main.php">AOMG</a>
   				</div>
 
   				<!-- Collect the nav links, forms, and other content for toggling -->
   				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   					<ul class="nav navbar-nav">
-  						<li class="active"><a href="myworkouts.php">Search<span class="sr-only">(current)</span></a></li>
+  						<li class="active"><a href="myworkouts.php">My Workouts<span class="sr-only">(current)</span></a></li>
   						<li><a href="myexercises.php">My Exercises</a></li>
   						<li class="active"><a href="mytrainers.php">My Trainers</a></li>
   						<li><a href="myappointments.php">My Appointments</a></li>
@@ -82,15 +82,15 @@ $ew = $_SESSION['ew'];
        	<h3 class="lg-txt">Find a Trainer by Age</h3>
           <form class="wrapper spacing" method="post">
             <select type="number" name="age">
-              <option value=20>20</option>
-              <option value=25>25</option>
-              <option value=30>30</option>
-              <option value=35>35</option>
-              <option value=40>40</option>
-              <option value=45>45</option>
-              <option value=50>50</option>
-              <option value=55>55</option>
-              <option value=60>60</option>
+              <option value=20>>20</option>
+              <option value=25>>25</option>
+              <option value=30>>30</option>
+              <option value=35>>35</option>
+              <option value=40>>40</option>
+              <option value=45>>45</option>
+              <option value=50>>50</option>
+              <option value=55>>55</option>
+              <option value=60>>60</option>
             </select>
             <input type="submit" value="Submit" name="nameandage">
           </form>
@@ -103,18 +103,18 @@ $ew = $_SESSION['ew'];
         <h3 class="lg-txt">Find a Trainer's Email by Weight</h3>
           <form class="wrapper spacing" method="post">
             <select type="number" name="weight">
-              <option value=180>180</option>
-              <option value=190>190</option>
-              <option value=210>210</option>
-              <option value=220>220</option>
-              <option value=230>230</option>
-              <option value=240>240</option>
-              <option value=250>250</option>
-              <option value=260>260</option>
-              <option value=270>270</option>
-              <option value=280>280</option>
-              <option value=290>290</option>
-              <option value=300>300</option>
+              <option value=180>>180 lbs</option>
+              <option value=190>>190 lbs</option>
+              <option value=210>>210 lbs</option>
+              <option value=220>>220 lbs</option>
+              <option value=230>>230 lbs</option>
+              <option value=240>>240 lbs</option>
+              <option value=250>>250 lbs</option>
+              <option value=260>>260 lbs</option>
+              <option value=270>>270 lbs</option>
+              <option value=280>>280 lbs</option>
+              <option value=290>>290 lbs</option>
+              <option value=300>>300 lbs</option>
             </select>
             <input type="submit" value="Submit" name="emailandweight">
           </form>
