@@ -5,6 +5,7 @@ session_start();
 if (isset($_SESSION['gid']) && $_SESSION['gid'] != '') {
     header ("Location: main.php");
 }
+
 ?>
 
 <!DOCTYPE html>

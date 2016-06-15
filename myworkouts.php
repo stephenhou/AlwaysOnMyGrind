@@ -1,14 +1,15 @@
 <?php
-ini_set('session.save_path', '/home/w/w9g0b/public_html/trainersession');
+ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
 session_start();
 
-include 'trainerlogin.php';
+include 'logdelete.php';
 
-if (!(isset($_SESSION['pid']) && $_SESSION['pid'] != '')) {
+if (!(isset($_SESSION['gid']) && $_SESSION['gid'] != '')) {
     header ("Location: index.php");
 }
 
-$pid = $_SESSION['pid'];
+$gid = $_SESSION['gid'];
+$show = $_SESSION['show'];
 
 ?>
 
@@ -48,7 +49,7 @@ $pid = $_SESSION['pid'];
   		<h1 class="title" id="todayDate">
   	</div>
   	<div class="col-md-4">
-  		<h1 class="login"><a type="button" class="btn-lg btn-danger" href="trainerlogout.php">Log Out</a></h1>
+  		<h1 class="login"><a type="button" class="btn-lg btn-danger" href="logout.php">Log Out</a></h1>
   	</div>
   	<div class="col-md-12">
   		<nav class="navbar navbar-inverse">
@@ -61,15 +62,16 @@ $pid = $_SESSION['pid'];
   						<span class="icon-bar"></span>
   						<span class="icon-bar"></span>
   					</button>
-  					<a class="navbar-brand" href="trainermain.php">AOMG</a>
+  					<a class="navbar-brand" href="main.php">AOMG</a>
   				</div>
 
   				<!-- Collect the nav links, forms, and other content for toggling -->
   				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   					<ul class="nav navbar-nav">
-  						<li class="active"><a href="mygymbros.php">My Gym Bros<span class="sr-only">(current)</span></a></li>
-  						<li><a href="mytrainerworkouts.php">My Workouts</a></li>
-  						<li class="active"><a href="mytrainerappointments.php">My Appointments</a></li>
+  						<li class="active"><a href="myworkouts.php">My Workouts<span class="sr-only">(current)</span></a></li>
+  						<li><a href="myexercises.php">My Exercises</a></li>
+  						<li class="active"><a href="mytrainers.php">My Trainers</a></li>
+  						<li><a href="myappointments.php">My Appointments</a></li>
   					</ul>
   					<ul class="nav navbar-nav navbar-right">
   						<li class="active"><a href="aboutus.php">About Us</a></li>
@@ -79,20 +81,17 @@ $pid = $_SESSION['pid'];
   		</nav>
   	</div>
 
-  	<div class="col-md-6">
-       	<h3 class="lg-txt" id="today"></h3>
-        <!--
-        <?php
-          //include 'getworkoutandgoals.php'
-        ?>
-        <h4><?php //echo $param; ?></h4>
-       -->
-        
-    </div>
+    <div class="col-md-12">
+        <h3 class="lg-txt">Made a Mistake? Delete a Workout Entry by Date</h3>
+        <p class="wrapper">Select from the following dates to delete:</p>
+        <?PHP printResult($show);?>
+        <h4 class="wrapper spacing">Now please <strong>carefully</strong> copy the date of the workout entry you would like to delete <strong>(this is permanent)</strong> </h4>
+        <h4 class="wrapper spacing"><strong>USE THE SAME FORMATTING AS ABOVE</strong></h4>
 
-
-    <div class="col-md-6">
-        <h3 class="lg-txt">Today's Goals</h3>
+        <form method="post" class="wrapper">
+          <input type="text" name="doe">
+          <input type="submit" name="delsubmit">
+        </form>
     </div>
 
 

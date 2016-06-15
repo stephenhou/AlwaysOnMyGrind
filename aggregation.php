@@ -26,12 +26,6 @@
                 oci_bind_by_name($stid, ":bind1", $gid);
                 oci_execute($stid);
                 $_SESSION['pr'] = $stid;
-            
-                if ($result) {
-                    // PRINT $result
-                    header("location: myexercises.php");
-                    exit;
-                }
             }
             if($_POST['statchoice'] == 3){
 
@@ -40,12 +34,6 @@
                 oci_bind_by_name($stid, ":bind1", $gid);
                 oci_execute($stid);
                 $_SESSION['pr'] = $stid;
-            
-                if ($result) {
-                    // PRINT $result
-                    header("location: myexercises.php");
-                    exit;
-                }
             }
             if($_POST['statchoice'] == 4){
 
@@ -54,12 +42,6 @@
                 oci_bind_by_name($stid, ":bind1", $gid);
                 oci_execute($stid);
                 $_SESSION['pr'] = $stid;
-            
-                if ($result) {
-                    // PRINT $result
-                    header("location: myexercises.php");
-                    exit;
-                }
             }
             if($_POST['statchoice'] == 5){
 
@@ -68,12 +50,6 @@
                 oci_bind_by_name($stid, ":bind1", $gid);
                 oci_execute($stid);
                 $_SESSION['pr'] = $stid;
-            
-                if ($result) {
-                    // PRINT $result
-                    header("location: myexercises.php");
-                    exit;
-                }
             }
         }
         /**Commit to save changes... */

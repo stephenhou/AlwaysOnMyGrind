@@ -2,13 +2,16 @@
 ini_set('session.save_path', '/home/w/w9g0b/public_html/trainersession');
 session_start();
 
-include 'trainerlogin.php';
+include 'nested_aggregation.php';
+include 'delete_op.php';
 
 if (!(isset($_SESSION['pid']) && $_SESSION['pid'] != '')) {
     header ("Location: index.php");
 }
 
 $pid = $_SESSION['pid'];
+$prg = $_SESSION['prg'];
+$show = $_SESSION['show'];
 
 ?>
 
@@ -67,7 +70,7 @@ $pid = $_SESSION['pid'];
   				<!-- Collect the nav links, forms, and other content for toggling -->
   				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   					<ul class="nav navbar-nav">
-  						<li class="active"><a href="mygymbros.php">My Gym Bros<span class="sr-only">(current)</span></a></li>
+  						<li class="active"><a href="mytrainees.php">My Trainees<span class="sr-only">(current)</span></a></li>
   						<li><a href="mytrainerworkouts.php">My Workouts</a></li>
   						<li class="active"><a href="mytrainerappointments.php">My Appointments</a></li>
   					</ul>
@@ -79,20 +82,52 @@ $pid = $_SESSION['pid'];
   		</nav>
   	</div>
 
-  	<div class="col-md-6">
-       	<h3 class="lg-txt" id="today"></h3>
-        <!--
-        <?php
-          //include 'getworkoutandgoals.php'
-        ?>
-        <h4><?php //echo $param; ?></h4>
-       -->
-        
+    <div class="col-md-6">
+        <h3 class="lg-txt">Cool Gym Bro Stats! (Selected by Body Weight Class)</h3>
+        <form class="wrapper spacing" method="post">
+            <select type="text" name="exercise">
+              <option value="Dumbbell press">Dumbbell press</option>
+              <option value="Incline Dumbbell press">Incline Dumbbell press</option>
+              <option value="Decline Dumbbell press">Decline Dumbbell press</option>
+              <option value="Incline Bench presss">Incline Bench press</option>
+              <option value="Decline Bench press">Decline Bench press</option>
+              <option value="Cable cross">Cable cross</option>
+              <option value="Dumbbell curls">Dumbbell curls</option>
+              <option value="Barbell curls">Barbell curls</option>
+              <option value="Cable curls">Cable curls</option>
+              <option value="Rope push-downs">Rope push-downs</option>
+              <option value="Cable Pull-downs">Cable Pull-downs</option>
+              <option value="Back machine">Back machine</option>
+              <option value="Lunges">Lunges</option>
+              <option value="Squats">Squats</option>
+              <option value="Leg Press">Leg Press</option>
+            </select>
+            <select type="number" name="statchoice">
+              <option value=2>Personal Records</option>
+              <option value=3>Personal Worsts :(</option>
+              <option value=4>Average Exercise Weights</option>
+              <option value=5>Total Times Performed</option>
+            </select>
+            <select type="number" name="bodyw">
+              <option value=150>Gym Bro Body Weight: <150 lbs</option>
+              <option value=200>Gym Bro Body Weight: <200 lbs</option>
+              <option value=250>Gym Bro Body Weight: <250 lbs</option>
+              <option value=300>Gym Bro Body Weight: <300 lbs</option>
+            </select>
+            <input type="submit" value="Submit" name="nest">
+        </form>
+        <?PHP printResultForAggregation($prg);?>
     </div>
 
-
     <div class="col-md-6">
-        <h3 class="lg-txt">Today's Goals</h3>
+        <h3 class="lg-txt">Delete Quitters</h3>
+        <?PHP printMultAtrResult($show);?>
+        <h4 class="wrapper">Now please <strong>carefully</strong> type in the ID of the Gym Bro you wish to remove <strong>(this is permanent)</strong> </h4>
+
+        <form method="post" class="wrapper">
+          <input type="number" name="delete">
+          <input type="submit" name="delsubmit">
+        </form>
     </div>
 
 
@@ -106,6 +141,6 @@ $pid = $_SESSION['pid'];
 
   	<!-- Login Javascipt -->
   	<script src="js/logout.js"></script>
-  	<script src="js/date.js"></script>
+    <script src="js/date.js"></script>
   </body>
   </html>

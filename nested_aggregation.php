@@ -1,97 +1,61 @@
 <?php
-    /**
-     * Created by PhpStorm.
-     * User: joohan0311
-     * Date: 2016-06-12
-     * Time: 10:49 PM
-     */
-    ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
-    session_start();
+ini_set('session.save_path', '/home/w/w9g0b/public_html/trainersession');
+session_start();
+
     $success = True;
-    $db_conn = OCILogon("ora_x3b0b", "a15055149", "ug");
-    function executePlainSQL($cmdstr) {
-        /**takes a plain (no bound variables) SQL command and executes it
-         * echo "<br>running ".$cmdstr."<br>";
-         */
-        global $db_conn, $success;
-        $statement = OCIParse($db_conn, $cmdstr);
-        /**There is a set of comments at the end of the file that describe some of the OCI specific functions and how they work
-         */
-        if (!$statement) {
-            echo "<br>Cannot parse the following command: " . $cmdstr . "<br>";
-            $e = OCI_Error($db_conn);
-            echo htmlentities($e['message']);
-            $success = False;
-        }
-        
-        $r = OCIExecute($statement, OCI_DEFAULT);
-        if (!$r) {
-            echo "<br>Cannot execute the following command: " . $cmdstr . "<br>";
-            $e = oci_error($statement);
-            echo htmlentities($e['message']);
-            $success = False;
-        } else {
-            
-        }
-        return $statement;
-    }
-    function executeBoundSQL($cmdstr, $list) {
-        /** Sometimes a same statement will be excuted for severl times, only
-         the value of variables need to be changed.
-         In this case you don't need to create the statement several times;
-         using bind variables can make the statement be shared and just
-         parsed once. This is also very useful in protecting against SQL injection. See example code below for
-         how this functions is used */
-        global $db_conn, $success;
-        $statement = OCIParse($db_conn, $cmdstr);
-        
-        if (!$statement) {
-            echo "<br>Cannot parse the following command: " . $cmdstr . "<br>";
-            $e = OCI_Error($db_conn);
-            echo htmlentities($e['message']);
-            $success = False;
-        }
-        
-        foreach ($list as $tuple) {
-            foreach ($tuple as $bind => $val) {
-                //echo $val;
-                //echo "<br>".$bind."<br>";
-                OCIBindByName($statement, $bind, $val);
-                unset ($val);
-                //make sure you do not remove this. Otherwise $val will remain in an array object wrapper which will not be recognized by Oracle as a proper datatype
-            }
-            $r = OCIExecute($statement, OCI_DEFAULT);
-            if (!$r) {
-                echo "<br>Cannot execute the following command: " . $cmdstr . "<br>";
-                $e = OCI_Error($statement); // For OCIExecute errors pass the statementhandle
-                echo htmlentities($e['message']);
-                echo "<br>";
-                $success = False;
-            }
-            
-        }
-    }
-    function printResult($result) { //prints results from a select statement
+    $db_conn = OCILogon("ora_g1t0b", "a71677165", "ug");
+    
+    function printResultForAggregation($result) { //prints results from a select statement
         while (($row = oci_fetch_array($result)) != false) {
+            echo "<p class=\"wrapper\">";
+            echo $row[1];
+            echo ": ";
             echo $row[0];
+            echo "</p>";
         }
     }
+
+
     if ($db_conn) {
-        if (array_key_exists('personal_record_g', $_POST)) {
+        if (array_key_exists('nest', $_POST)) {
             //nested aggregation with group-by
             //Personal trainer queries max/min/avg/count weight done by their gymBros where the gymBros' body weight is less than the input weight.
-            $stid = oci_parse($db_conn,
-                              "select :bind0(gymBro_does_exercises.weight), gymbro.fullname from gymBro_does_exercises, gymbro where gymBro_does_exercises.gid = gymbro.gid and gymbro.gid IN (select gymbro.gid from gymbro where gymbro.weight < :bind1) group by gymBro.fullname");
-            oci_bind_by_name($stid, ":bind0", $_POST['agg']);
-            oci_bind_by_name($stid, ":bind1", $_POST['body_w']);
-            oci_execute($stid);
-            $_SESSION['prg'] = $stid;
-            
-            if ($result) {
-                // PRINT $result
-                header("location: personalTrainer.php");
-                exit;
-            }
+            if($_POST['statchoice'] == 2){
+                $stid = oci_parse($db_conn,
+                                  "select max(gymBro_does_exercises.weight), gymbro.fullname from gymBro_does_exercises, gymBro where gymBro_does_exercises.name = :bind0 and gymBro_does_exercises.gid = gymBro.gid and gymBro.gid IN (select gymBro.gid from gymBro where gymBro.weight < :bind1) group by gymBro.fullname");
+
+                oci_bind_by_name($stid, ":bind0", $_POST['exercise']);
+                oci_bind_by_name($stid, ":bind1", $_POST['bodyw']);
+                oci_execute($stid);
+                $_SESSION['prg'] = $stid;
+          }
+          if($_POST['statchoice'] == 3){
+                $stid = oci_parse($db_conn,
+                                  "select min(gymBro_does_exercises.weight), gymbro.fullname from gymBro_does_exercises, gymBro where gymBro_does_exercises.name = :bind0 and gymBro_does_exercises.gid = gymBro.gid and gymBro.gid IN (select gymBro.gid from gymBro where gymBro.weight < :bind1) group by gymBro.fullname");
+
+                oci_bind_by_name($stid, ":bind0", $_POST['exercise']);
+                oci_bind_by_name($stid, ":bind1", $_POST['bodyw']);
+                oci_execute($stid);
+                $_SESSION['prg'] = $stid;
+          }
+          if($_POST['statchoice'] == 4){
+                $stid = oci_parse($db_conn,
+                                  "select avg(gymBro_does_exercises.weight), gymbro.fullname from gymBro_does_exercises, gymBro where gymBro_does_exercises.name = :bind0 and gymBro_does_exercises.gid = gymBro.gid and gymBro.gid IN (select gymBro.gid from gymBro where gymBro.weight < :bind1) group by gymBro.fullname");
+
+                oci_bind_by_name($stid, ":bind0", $_POST['exercise']);
+                oci_bind_by_name($stid, ":bind1", $_POST['bodyw']);
+                oci_execute($stid);
+                $_SESSION['prg'] = $stid;
+          }
+          if($_POST['statchoice'] == 5){
+                $stid = oci_parse($db_conn,
+                                  "select count(gymBro_does_exercises.weight), gymbro.fullname from gymBro_does_exercises, gymBro where gymBro_does_exercises.name = :bind0 and gymBro_does_exercises.gid = gymBro.gid and gymBro.gid IN (select gymBro.gid from gymBro where gymBro.weight < :bind1) group by gymBro.fullname");
+
+                oci_bind_by_name($stid, ":bind0", $_POST['exercise']);
+                oci_bind_by_name($stid, ":bind1", $_POST['bodyw']);
+                oci_execute($stid);
+                $_SESSION['prg'] = $stid;
+          }  
         }
         /**Commit to save changes... */
         OCILogoff($db_conn);
