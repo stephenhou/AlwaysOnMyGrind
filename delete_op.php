@@ -3,7 +3,7 @@ ini_set('session.save_path', '/home/w/w9g0b/public_html/trainersession');
 session_start();
 
     $success = True;
-    $db_conn = OCILogon("ora_g1t0b", "a71677165", "ug");
+    $db_conn = OCILogon("ora_x3b0b", "a15055149", "ug");
    
     function printMultAtrResult($result) { //prints results from a select statement
         while (($row = oci_fetch_array($result)) != false) {

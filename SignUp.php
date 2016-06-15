@@ -12,7 +12,7 @@ session_start();
 * keep track of errors so it redirects the page only if there are no errors
 */
 $success = True;
-$db_conn = OCILogon("ora_g1t0b", "a71677165", "ug");
+$db_conn = OCILogon("ora_x3b0b", "a15055149", "ug");
 $number = mt_rand(100000, 999999);
 function executePlainSQL($cmdstr) {
 /**takes a plain (no bound variables) SQL command and executes it
