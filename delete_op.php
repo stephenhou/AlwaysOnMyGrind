@@ -2,8 +2,8 @@
     /**
      * Created by PhpStorm.
      * User: joohan0311
-     * Date: 2016-06-12
-     * Time: 10:49 PM
+     * Date: 2016-06-13
+     * Time: 4:37 PM
      */
     ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
     session_start();
@@ -77,19 +77,28 @@
         }
     }
     if ($db_conn) {
-        if (array_key_exists('personal_record_g', $_POST)) {
-            //nested aggregation with group-by
-            //Personal trainer queries max/min/avg/count weight done by their gymBros where the gymBros' body weight is less than the input weight.
-            $stid = oci_parse($db_conn,
-                              "select :bind0(gymBro_does_exercises.weight), gymbro.fullname from gymBro_does_exercises, gymbro where gymBro_does_exercises.gid = gymbro.gid and gymbro.gid IN (select gymbro.gid from gymbro where gymbro.weight < :bind1) group by gymBro.fullname");
-            oci_bind_by_name($stid, ":bind0", $_POST['agg']);
-            oci_bind_by_name($stid, ":bind1", $_POST['body_w']);
+        if (array_key_exists('remove_gymbro', $_POST)) {
+            // Delete a gymBro from the database as his/her contract expired <-- Delete all his info ON CASCADE
+            $stid = oci_parse($db_conn, "DELETE from gymBro where fullname = :bind0");
+            oci_bind_by_name($stid, ":bind0", $_POST['fullname']);
             oci_execute($stid);
-            $_SESSION['prg'] = $stid;
-            
+            $_SESSION['rg'] = $stid;
             if ($result) {
                 // PRINT $result
                 header("location: personalTrainer.php");
+                exit;
+            }
+        }
+        if (array_key_exists('remove_workout', $_POST)) {
+            // Delete a gymBro from the database as his/her contract expired
+            $stid = oci_parse($db_conn, "delete from g_does_dayofworkout where dateofentry = :bind0 and gid = :bind1");
+            oci_bind_by_name($stid, ":bind0", $_POST['doe']);
+            oci_bind_by_name($stid, ":bind1", $_SESSION['gid']);
+            oci_execute($stid);
+            $_SESSION['rw'] = $stid;
+            if ($result) {
+                // PRINT $result
+                header("location: myworkout.php");
                 exit;
             }
         }
@@ -102,6 +111,6 @@
         $e = OCI_Error(); // For OCILogon errors pass no handle
         echo htmlentities($e['message']);
     }
-?>
+    ?>
 
 

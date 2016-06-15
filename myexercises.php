@@ -109,9 +109,15 @@ $pr = $_SESSION['pr'];
           <?PHP printResult($bp);?>
     </div>
     <div class="col-md-12">
-        <h3 class="lg-txt">Find Your Personal Records!</h3>
+        <h3 class="lg-txt">Cool Stats!</h3>
           <form class="wrapper spacing" method="post">
-            <input type="submit" value="Submit" name="personal_record">
+            <select type="number" name="statchoice">
+              <option value=2>Personal Records</option>
+              <option value=3>Personal Worsts :(</option>
+              <option value=4>Average Exercise Weights</option>
+              <option value=5>Total Times Performed</option>
+            </select>
+            <input type="submit" value="Submit" name="agr">
           </form>
           <?PHP printResultForAggregation($pr);?>
     </div>

@@ -1,16 +1,15 @@
 <?php
-    ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
-    session_start();
-    $gid = $_SESSION['gid'];
     /**
      * Created by PhpStorm.
      * User: joohan0311
      * Date: 2016-06-12
      * Time: 10:49 PM
      */
+    ini_set('session.save_path', '/home/w/x3b0b/public_html/session');
+    session_start();
     $success = True;
     $db_conn = OCILogon("ora_g1t0b", "a71677165", "ug");
-        
+    
     function printResultForAggregation($result) { //prints results from a select statement
         while (($row = oci_fetch_array($result)) != false) {
             echo "<p class=\"wrapper\">";
@@ -20,20 +19,61 @@
             echo "</p>";
         }
     }
+
     if ($db_conn) {
-        if (array_key_exists('personal_record', $_POST)) {
-            // find max weight for all your exercises
-            $stid = oci_parse($db_conn, "select MAX(weight), name from gymbro_does_exercises where  gid = :bind0 group by name");
+        if (array_key_exists('agr', $_POST)) {
+            // Find MAX/MIN/COUNT/AVG weight that a gymBro has done for each exercise
+            if($_POST['statchoice'] == 2){
 
-            oci_bind_by_name($stid, ":bind0", $gid);
-            oci_execute($stid);
-
-            $_SESSION['pr'] = $stid;
+                $stid = oci_parse($db_conn, "select max(weight), name from gymbro_does_exercises group by name");
+                
+                oci_execute($stid);
+                $_SESSION['pr'] = $stid;
             
-            if ($result) {
-                // PRINT $result
-                header("location: myexercises.php");
-                exit;
+                if ($result) {
+                    // PRINT $result
+                    header("location: myexercises.php");
+                    exit;
+                }
+            }
+            if($_POST['statchoice'] == 3){
+
+                $stid = oci_parse($db_conn, "select min(weight), name from gymbro_does_exercises group by name");
+                
+                oci_execute($stid);
+                $_SESSION['pr'] = $stid;
+            
+                if ($result) {
+                    // PRINT $result
+                    header("location: myexercises.php");
+                    exit;
+                }
+            }
+            if($_POST['statchoice'] == 4){
+
+                $stid = oci_parse($db_conn, "select avg(weight), name from gymbro_does_exercises group by name");
+                
+                oci_execute($stid);
+                $_SESSION['pr'] = $stid;
+            
+                if ($result) {
+                    // PRINT $result
+                    header("location: myexercises.php");
+                    exit;
+                }
+            }
+            if($_POST['statchoice'] == 5){
+
+                $stid = oci_parse($db_conn, "select count(weight), name from gymbro_does_exercises group by name");
+                
+                oci_execute($stid);
+                $_SESSION['pr'] = $stid;
+            
+                if ($result) {
+                    // PRINT $result
+                    header("location: myexercises.php");
+                    exit;
+                }
             }
         }
         /**Commit to save changes... */
