@@ -52,7 +52,7 @@
         <?PHP
         if($_SESSION['invalid'] == 2){
 
-          echo "<h3 class=\"lg-txt red\">Please enter a valid age or body weight</h3>";
+          echo "<h3 class=\"lg-txt red\">Please enter a valid age, body weight, and phone number</h3>";
         }
         ?>
         <form id="followupForm" action="mainnew.php" method="post">

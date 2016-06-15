@@ -35,7 +35,7 @@ create table gymBro
 	phone integer,
 	email varchar2(50),
 	weight number(*,1),
-	check (age > 5 and age < 110 and weight > 50 and weight < 800));
+	check (age > 5 and age < 110 and weight > 50 and weight < 800 and phone>1000000000 and phone < 9999999999));
 
 create table trains
 	( apptDate date,
