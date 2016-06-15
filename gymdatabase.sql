@@ -34,7 +34,8 @@ create table gymBro
 	age integer,
 	phone integer,
 	email varchar2(50),
-	weight number(*,1) );
+	weight number(*,1),
+	check (age > 5 and age < 110 and weight > 50 and weight < 800));
 
 create table trains
 	( apptDate date,
@@ -45,8 +46,8 @@ create table trains
 	pid integer,
 	gid integer,
 	PRIMARY KEY (apptDate, apptTime, pid, gid),
-	foreign key (gid) references gymBro,
-	foreign key (pid) references personalTrainer );
+	foreign key (gid) references gymBro ON DELETE CASCADE,
+	foreign key (pid) references personalTrainer);
 
 create table workout
 	( workoutId integer PRIMARY KEY );
@@ -68,15 +69,15 @@ create table bodyPart_for
 	( type varchar2(40),
 	workoutId integer,
 	PRIMARY KEY (type, workoutId),
-	foreign key (type) references bodyPart,
-	foreign key (workoutId) references workout );
+	foreign key (type) references bodyPart ON DELETE CASCADE,
+	foreign key (workoutId) references workout);
 
 create table dayOfWorkout
 	( nameOfDay char(3),
 	workoutId integer,
 	specificWorkoutId integer,
 	PRIMARY KEY (workoutId, specificWorkoutId),
-	foreign key (workoutId) references workout );
+	foreign key (workoutId) references workout);
 
 create table pt_does_dayOfWorkout
 	( workoutId integer,
@@ -87,15 +88,14 @@ create table pt_does_dayOfWorkout
 	foreign key (pid) references personalTrainer,
 	foreign key (workoutId, specificWorkoutId) references dayOfWorkout );
 
-
 create table g_does_dayOfWorkout
 	( workoutId integer,
 	specificWorkoutId integer,
 	gid integer,
 	dateOfEntry date,
 	PRIMARY KEY ( workoutId, specificWorkoutId, dateOfEntry),
-	foreign key (gid) references gymBro,
-	foreign key (workoutId, specificWorkoutId) references dayOfWorkout );
+	foreign key (gid) references gymBro ON DELETE CASCADE,
+	foreign key (workoutId, specificWorkoutId) references dayOfWorkout  );
 
 create table dayOfWorkoutDate
 	( dateOfEntry date PRIMARY KEY,
@@ -110,7 +110,7 @@ create table gymBro_does_exercises
 	reps integer,
 	weight integer,
 	PRIMARY KEY (gid, name, recordedDate),
-	foreign key (gid) references gymBro,
+	foreign key (gid) references gymBro ON DELETE CASCADE,
 	foreign key (name) references exercises );
 
 create table equipment
@@ -124,26 +124,26 @@ create table involves
 	foreign key (exName) references exercises );
 
 insert into personalTrainer values
-	( 10000000, 'Arnold Schwarzenegger', 'arnold99', 'absdf', 'M', 39, 6045798123, 'arnoldschwarzenegger@gmail.com', 250.6);
+	( 10000000, 'Arnold Schwarzenegger', 'arnold99', 'pass0', 'M', 39, 6045798123, 'arnoldschwarzenegger@gmail.com', 250.6);
 insert into personalTrainer values
-	( 10000001, 'Lou Ferrigno', 'lou99', 'babaf', 'M', 39, 6045798123, 'LouFerrigno@gmail.com', 253.3);
+	( 10000001, 'Lou Ferrigno', 'lou99', 'pass1', 'M', 39, 6045798123, 'LouFerrigno@gmail.com', 253.3);
 insert into personalTrainer values
-	( 10000002, 'Iris Kyle', 'iris99', 'aqqer', 'F', 39, 6045798123, 'IrisKyle@gmail.com', 160.2);
+	( 10000002, 'Iris Kyle', 'iris99', 'pass2', 'F', 39, 6045798123, 'IrisKyle@gmail.com', 160.2);
 insert into personalTrainer values
-	( 10000003, 'Ronnie Coleman', 'ronnie99', 'qetqgq', 'M', 39, 6045798123, 'RonnieColeman@gmail.com', 260.3);
+	( 10000003, 'Ronnie Coleman', 'ronnie99', 'pass3', 'M', 39, 6045798123, 'RonnieColeman@gmail.com', 260.3);
 insert into personalTrainer values
-	( 10000004, 'Jay Cutler', 'jay99', 'badfadg', 'M', 39, 6045798123, 'JayCutler@gmail.com', 249.9);
+	( 10000004, 'Jay Cutler', 'jay99', 'pass4', 'M', 39, 6045798123, 'JayCutler@gmail.com', 249.9);
 
 insert into gymBro values
-	( 20000000, 'Stephen Hou', 'shou', 'go', 'M', 19, 6045798123, 'stephenhou@gmail.com', 165.0);
+	( 20000000, 'Stephen Hou', 'shou', 'password0', 'M', 19, 6045798123, 'stephenhou@gmail.com', 165.0);
 insert into gymBro values
-	( 20000001, 'Andrew Oh', 'andrew_oh', 'bzcfqre', 'M', 19, 6045798123, 'andrewoh@gmail.com', 180.0);
+	( 20000001, 'Andrew Oh', 'andrew_oh', 'password1', 'M', 19, 6045798123, 'andrewoh@gmail.com', 180.0);
 insert into gymBro values
-	( 20000002, 'Liu Fangzhong', 'liu_fangzhong', 'abaoerwe', 'M', 19, 6045798123, 'liufangzhong@gmail.com', 165.3);
+	( 20000002, 'Liu Fangzhong', 'liu_fangzhong', 'password2', 'M', 19, 6045798123, 'liufangzhong@gmail.com', 165.3);
 insert into gymBro values
-	( 20000003, 'Kanye West', 'kanye_west', 'adfbbadf', 'M', 40, 6045798123, 'yeezy@gmail.com', 160.8);
+	( 20000003, 'Kanye West', 'kanye_west', 'password3', 'M', 40, 6045798123, 'yeezy@gmail.com', 160.8);
 insert into gymBro values
-	( 20000004, 'Kevin Hart', 'kevin_hart', 'adflbaabdf', 'M', 36, 6045798123, 'kevhart@gmail.com', 92.3);
+	( 20000004, 'Kevin Hart', 'kevin_hart', 'password4', 'M', 36, 6045798123, 'kevhart@gmail.com', 92.3);
 
 insert into trains values
 	( TO_DATE('31-MAY-2016', 'DD-MM-YYYY'), '14:30', 'good', 5, 'bench 500 or dont come back', 10000000, 20000000);
@@ -219,7 +219,10 @@ insert into workout_has values (30000004, 'Treadmill');
 insert into workout_has values (30000004, 'Bike');
 insert into workout_has values (30000004, 'Swimming');
 
-insert into gymBro_does_exercises  values (20000004, 'Dumbbell press', TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 180);
+insert into gymBro_does_exercises  values (20000001, 'Dumbbell press', TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 190);
+insert into gymBro_does_exercises  values (20000002, 'Dumbbell press', TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 170);
+insert into gymBro_does_exercises  values (20000003, 'Dumbbell press', TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 160);
+insert into gymBro_does_exercises  values (20000004, 'Dumbbell press', TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 200);
 insert into gymBro_does_exercises  values (20000004, 'Dumbbell press', TO_DATE('19-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 150);
 insert into gymBro_does_exercises  values (20000004, 'Incline Dumbbell press', TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 240);
 insert into gymBro_does_exercises  values (20000004, 'Incline Dumbbell press', TO_DATE('19-JUNE-2016', 'DD-MM-YYYY'), 3, 6, 230);

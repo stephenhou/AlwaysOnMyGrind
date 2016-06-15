@@ -49,12 +49,20 @@
       <div class="col-md-12">
         <h3 class="lg-txt">We just need a little more information to get started!</h3>
       </div>
+        <?PHP
+        if($_SESSION['invalid'] == 2){
 
-        <form id="followupForm" action="main.php" method="post">
+          echo "<h3 class=\"lg-txt red\">Please enter a valid age or body weight</h3>";
+        }
+        ?>
+        <form id="followupForm" action="mainnew.php" method="post">
           <div class="col-md-12">
           <div class="col-md-3"></div>
           <div class="col-md-6 spacing">
-            <input type="text" class="fld" name="gender" value="" placeholder="Gender">
+            <select type="text" name="gender" class="fld">
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
           </div>
           <div class="col-md-3"> </div>
           </div>

@@ -9,8 +9,8 @@
      * Time: 10:49 PM
      */
     $success = True;
-    $db_conn = OCILogon("ora_x3b0b", "a15055149", "ug");
-    
+    $db_conn = OCILogon("ora_g1t0b", "a71677165", "ug");
+        
     function printResultForAggregation($result) { //prints results from a select statement
         while (($row = oci_fetch_array($result)) != false) {
             echo "<p class=\"wrapper\">";

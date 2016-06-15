@@ -4,8 +4,8 @@ session_start();
 $gid = $_SESSION['gid'];
 
 	$success = True;
-    $db_conn = OCILogon("ora_x3b0b", "a15055149", "ug");
-    
+    $db_conn = OCILogon("ora_g1t0b", "a71677165", "ug");
+        
     if ($db_conn) {
     	$stid = oci_parse($db_conn, "select ");
 

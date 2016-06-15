@@ -32,6 +32,7 @@
       </div>
       <div class="col-md-6">
         <h1 class="login"><button type="button" class="btn-lg btn-danger" id="show_login" value="Show Login">Log in</button></h1>
+        
       </div>
 
       <center>
@@ -45,6 +46,8 @@
           </form>
 
       </center>
+
+      
 
       <div class="col-md-6">
         <h3 class="lg-txt">Let's build a <br>better you.</h3>

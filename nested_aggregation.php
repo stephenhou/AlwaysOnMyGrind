@@ -1,19 +1,14 @@
 <?php
-ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
-session_start();
 /**
 * Created by PhpStorm.
 * User: joohan0311
-* Date: 2016-06-11
-* Time: 4:15 PM
+* Date: 2016-06-12
+* Time: 10:49 PM
 */
-/** this tells the system that it's no longer just parsing
-* html; it's now parsing PHP
-* keep track of errors so it redirects the page only if there are no errors
-*/
+ini_set('session.save_path', '/home/w/x3b0b/public_html/session');
+session_start();
 $success = True;
 $db_conn = OCILogon("ora_g1t0b", "a71677165", "ug");
-$number = mt_rand(100000, 999999);
 function executePlainSQL($cmdstr) {
 /**takes a plain (no bound variables) SQL command and executes it
 * echo "<br>running ".$cmdstr."<br>";
@@ -62,8 +57,8 @@ foreach ($tuple as $bind => $val) {
 //echo $val;
 //echo "<br>".$bind."<br>";
 OCIBindByName($statement, $bind, $val);
-unset ($val); //make sure you do not remove this. Otherwise $val will remain in an array object wrapper which will not be recognized by Oracle as a proper datatype
-
+unset ($val);
+//make sure you do not remove this. Otherwise $val will remain in an array object wrapper which will not be recognized by Oracle as a proper datatype
 }
 $r = OCIExecute($statement, OCI_DEFAULT);
 if (!$r) {
@@ -73,83 +68,38 @@ echo htmlentities($e['message']);
 echo "<br>";
 $success = False;
 }
+
 }
 }
-/**
 function printResult($result) { //prints results from a select statement
-echo "<br>Got data from table tab1:<br>";
-echo "<table>";
-echo "<tr><th>ID</th><th>Name</th></tr>";
-
-while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-echo "<tr><td>" . $row["NID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]"
-}
-echo "</table>";
-
-}
-*/
-function generateUniqueId($number) {
-global $db_conn, $number;
-$statement = OCIParse($db_conn, 'select gid from gymBro');
-$r = OCIExecute($statement, OCI_DEFAULT);
-if ($r) {
-/**  $fetcharray = existing gid values from gymBro */
-$fetchArray = oci_fetch_array($statement, OCI_NUM);
-if (!in_array($number,$fetchArray)) {
-return $number;
-}
-else {
-$newNumber = mt_rand(100000, 999999);
-return generateUniqueId($newNumber);
-}
+while (($row = oci_fetch_array($result)) != false) {
+echo $row[0];
 }
 }
 if ($db_conn) {
-if (array_key_exists('signupsubmit', $_POST)) {
-/**Getting the values from user and insert data into the table
-*/
-$gid = generateUniqueId($number);
-$_SESSION['gid'] = $gid;
+if (array_key_exists('personal_record', $_POST)) {
+//nested aggregation with group-by
+//Personal trainer queries max weight done by their gymBro. Personal Trainer will go through their gymBros,
+//and return max weight for each gymBro.
+$stid = oci_parse($db_conn, "select MAX(gymBro_does_exercises.weight), gymBro.fullname from gymBro, personalTrainer, trains, gymBro_does_exercises where trains.pid = personalTrainer.pid and gymBro_does_exercises.gid = gymBro.gid group by gymBro.fullname");
+oci_execute($stid);
+$_SESSION['pr'] = $stid;
 
-$tuple = array (
-":bind0" => $gid,
-":bind1" => $_POST['fname']. ''.$_POST['lname'],
-":bind2" => $_POST['email'],
-":bind3" => $_POST['username'],
-":bind4" => $_POST['password'],
-":bind5" => null,
-);
-$alltuples = array (
-$tuple
-);
-executeBoundSQL("insert into gymBro values (:bind0, :bind1, :bind3, :bind4, :bind5, :bind5, :bind5, :bind2, :bind5)", $alltuples);
-
-OCICommit($db_conn);
-}
-
-
-if ($_POST && $success) {
-/**POST-REDIRECT-GET -- See http://en.wikipedia.org/wiki/Post/Redirect/Get
-*/
-header("location: submitsignup.php");
+if ($result) {
+// PRINT $result
+header("location: myexercises.php");
 exit;
-} else {
-
+}
 }
 /**Commit to save changes... */
 OCILogoff($db_conn);
-} else {
+}
+else {
+// No rows matched so login failed
 echo "cannot connect";
 $e = OCI_Error(); // For OCILogon errors pass no handle
 echo htmlentities($e['message']);
 }
-
 ?>
-
-
-
-
-
-
 
 

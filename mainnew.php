@@ -2,7 +2,7 @@
 ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
 session_start();
 
-include 'login.php';
+include 'addinfo.php';
 
 $gid = $_SESSION['gid'];
 
@@ -57,7 +57,7 @@ $gid = $_SESSION['gid'];
   						<span class="icon-bar"></span>
   						<span class="icon-bar"></span>
   					</button>
-  					<a class="navbar-brand" href="main.php">AOMG</a>
+  					<a class="navbar-brand" href="mainnew.php">AOMG</a>
   				</div>
 
   				<!-- Collect the nav links, forms, and other content for toggling -->

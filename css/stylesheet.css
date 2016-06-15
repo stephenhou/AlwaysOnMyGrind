@@ -46,6 +46,9 @@
    text-align:center;
    align-items: center;
 }
+.red {
+   color: red;
+}
 
 body {
 	font-family: 'Cabin', sans-serif;
