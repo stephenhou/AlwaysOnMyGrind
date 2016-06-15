@@ -4,8 +4,11 @@
   
   require 'SignUp.php';
 
-  $gid = $_SESSION['gid'];
+  if (!(isset($_SESSION['gid']) && $_SESSION['gid'] != '')) {
+    header ("Location: index.php");
+  }
 
+  $gid = $_SESSION['gid'];
 ?>
 
 <!DOCTYPE html>

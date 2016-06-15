@@ -1,3 +1,12 @@
+<?php
+ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
+session_start();
+
+if (isset($_SESSION['gid']) && $_SESSION['gid'] != '') {
+    header ("Location: main.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,18 +40,36 @@
         <h1 class="title">Always On My Grind</h1>
       </div>
       <div class="col-md-6">
-        <h1 class="login"><button type="button" class="btn-lg btn-danger" id="show_login" value="Show Login">Log in</button></h1>
+        <div class="col-md-3"></div>
+        <div class="col-md-5">
+          <h1 class="login"><button type="button" class="btn-lg btn-danger" id="show_login" value="Show Login">Log in</button></h1>
+        </div>
+        <div class="col-md-4">
+          <h1 class="login"><button type="button" class="btn-lg btn-danger" id="show_trainerlogin" value="Show Trainer Login">Trainer Log in</button></h1>
+        </div>
+      </div>
         
       </div>
 
       <center>
 
         <form id="loginform" method = "post" action = "login.php">
-          <p>Login to see your workouts</p>
+          <p>Login to See Your Workouts!</p>
             <i class="fa fa-close" id = "close_login"></i>
             <input type = "text" id = "login" placeholder = "Username" name = "uid">
             <input type = "password" id = "password" name = "upass" placeholder = "Password">
             <input type = "submit" id = "dologin" value = "Login" name="loginsubmit">
+          </form>
+
+      </center>
+      <center>
+
+        <form id="trainerform" method = "post" action = "trainerlogin.php">
+          <p>Log in to Manage Your Trainees!</p>
+            <i class="fa fa-close" id = "close_trainerlogin"></i>
+            <input type = "text" id = "login" placeholder = "Username" name = "uid">
+            <input type = "password" id = "password" name = "upass" placeholder = "Password">
+            <input type = "submit" id = "dotrainerlogin" value = "Login" name="trainersubmit">
           </form>
 
       </center>

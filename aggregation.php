@@ -1,12 +1,8 @@
 <?php
-    /**
-     * Created by PhpStorm.
-     * User: joohan0311
-     * Date: 2016-06-12
-     * Time: 10:49 PM
-     */
     ini_set('session.save_path', '/home/w/x3b0b/public_html/session');
     session_start();
+    $gid = $_SESSION['gid'];
+
     $success = True;
     $db_conn = OCILogon("ora_g1t0b", "a71677165", "ug");
     
@@ -25,8 +21,9 @@
             // Find MAX/MIN/COUNT/AVG weight that a gymBro has done for each exercise
             if($_POST['statchoice'] == 2){
 
-                $stid = oci_parse($db_conn, "select max(weight), name from gymbro_does_exercises group by name");
-                
+                $stid = oci_parse($db_conn, "select max(weight), name from gymbro_does_exercises where gid = :bind1 group by name");
+
+                oci_bind_by_name($stid, ":bind1", $gid);
                 oci_execute($stid);
                 $_SESSION['pr'] = $stid;
             
@@ -38,8 +35,9 @@
             }
             if($_POST['statchoice'] == 3){
 
-                $stid = oci_parse($db_conn, "select min(weight), name from gymbro_does_exercises group by name");
+                $stid = oci_parse($db_conn, "select min(weight), name from gymbro_does_exercises where gid = :bind1 group by name");
                 
+                oci_bind_by_name($stid, ":bind1", $gid);
                 oci_execute($stid);
                 $_SESSION['pr'] = $stid;
             
@@ -51,8 +49,9 @@
             }
             if($_POST['statchoice'] == 4){
 
-                $stid = oci_parse($db_conn, "select avg(weight), name from gymbro_does_exercises group by name");
+                $stid = oci_parse($db_conn, "select avg(weight), name from gymbro_does_exercises where gid = :bind1 group by name");
                 
+                oci_bind_by_name($stid, ":bind1", $gid);
                 oci_execute($stid);
                 $_SESSION['pr'] = $stid;
             
@@ -64,8 +63,9 @@
             }
             if($_POST['statchoice'] == 5){
 
-                $stid = oci_parse($db_conn, "select count(weight), name from gymbro_does_exercises group by name");
+                $stid = oci_parse($db_conn, "select count(weight), name from gymbro_does_exercises where gid = :bind1 group by name");
                 
+                oci_bind_by_name($stid, ":bind1", $gid);
                 oci_execute($stid);
                 $_SESSION['pr'] = $stid;
             

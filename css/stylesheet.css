@@ -118,4 +118,61 @@ h3 {
    font-size:20px;
 }
 
+#trainerform
+{
+   width:500px;
+   height:330px;
+   margin-top:100px;
+   background-color:#585858;
+   border-radius:3px;
+   box-shadow:0px 0px 10px 0px #424242;
+   padding:10px;
+   box-sizing:border-box;
+   font-family:helvetica;
+   visibility:hidden;
+   display:none;
+}
 
+#trainerform #close_trainerlogin
+{
+   position:absolute;
+   top:140px;
+   left:735px;
+   width:15px;
+   height:15px;
+}
+#trainerform p
+{
+   margin-top:40px;
+   font-size:22px;
+   color:#E6E6E6;
+}
+#trainerform #login
+{
+   width:250px;
+   height:40px;
+   border:2px solid silver;
+   border-radius:3px;
+   padding:5px;
+}
+#trainerform #password
+{
+   margin-top:5px;
+   width:250px;
+   height:40px;
+   border:2px solid silver;
+   border-radius:3px;
+   padding:5px;
+}
+#trainerform #dotrainerlogin
+{
+   margin-left:-5px;
+   margin-top:10px;
+   width:250px;
+   height:40px;
+   border:none;
+   border-radius:3px;
+   color:#E6E6E6;
+   background-color:grey;
+   font-size:20px;
+}

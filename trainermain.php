@@ -1,14 +1,10 @@
 <?php
-ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
+ini_set('session.save_path', '/home/w/w9g0b/public_html/trainersession');
 session_start();
 
-include 'addinfo.php';
+include 'login.php';
 
-if (!(isset($_SESSION['gid']) && $_SESSION['gid'] != '')) {
-    header ("Location: index.php");
-  }
-
-$gid = $_SESSION['gid'];
+$pid = $_SESSION['pid'];
 
 ?>
 
@@ -48,7 +44,7 @@ $gid = $_SESSION['gid'];
   		<h1 class="title" id="todayDate">
   	</div>
   	<div class="col-md-4">
-  		<h1 class="login"><a type="button" class="btn-lg btn-danger" href="logout.php">Log Out</a></h1>
+  		<h1 class="login"><button type="button" class="btn-lg btn-danger" id="logout">Log Out</button></h1>
   	</div>
   	<div class="col-md-12">
   		<nav class="navbar navbar-inverse">
@@ -61,7 +57,7 @@ $gid = $_SESSION['gid'];
   						<span class="icon-bar"></span>
   						<span class="icon-bar"></span>
   					</button>
-  					<a class="navbar-brand" href="mainnew.php">AOMG</a>
+  					<a class="navbar-brand" href="trainermain.php">AOMG</a>
   				</div>
 
   				<!-- Collect the nav links, forms, and other content for toggling -->

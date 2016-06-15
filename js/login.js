@@ -7,6 +7,13 @@ $(document).ready(function(){
     hidepopup();
    });
 
+   $("#show_trainerlogin").click(function(){
+    trainershowpopup();
+   });
+   $("#close_trainerlogin").click(function(){
+    trainerhidepopup();
+   });
+
 });
 
 
@@ -20,4 +27,16 @@ function hidepopup()
 {
    $("#loginform").fadeOut();
    $("#loginform").css({"visibility":"hidden","display":"none"});
+}
+
+function trainershowpopup()
+{
+   $("#trainerform").fadeIn();
+   $("#trainerform").css({"visibility":"visible","display":"block"});
+}
+
+function trainerhidepopup()
+{
+   $("#trainerform").fadeOut();
+   $("#trainerform").css({"visibility":"hidden","display":"none"});
 }

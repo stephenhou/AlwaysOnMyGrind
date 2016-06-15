@@ -4,6 +4,10 @@ session_start();
 
 include 'Selection_Projection.php';
 
+if (!(isset($_SESSION['gid']) && $_SESSION['gid'] != '')) {
+    header ("Location: index.php");
+  }
+
 $gid = $_SESSION['gid'];
 $na = $_SESSION['na'];
 $ew = $_SESSION['ew'];
@@ -46,7 +50,7 @@ $ew = $_SESSION['ew'];
   		<h1 class="title" id="todayDate">
   	</div>
   	<div class="col-md-4">
-  		<h1 class="login"><button type="button" class="btn-lg btn-danger" id="logout">Log Out</button></h1>
+  		<h1 class="login"><a type="button" class="btn-lg btn-danger" href="logout.php">Log Out</a></h1>
   	</div>
   	<div class="col-md-12">
   		<nav class="navbar navbar-inverse">
