@@ -3,12 +3,16 @@ ini_set('session.save_path', '/home/w/w9g0b/public_html/session');
 session_start();
 
 include 'login.php';
+include 'getworkoutandgoals.php';
 
 if (!(isset($_SESSION['gid']) && $_SESSION['gid'] != '')) {
     header ("Location: index.php");
-  }
+}
 
 $gid = $_SESSION['gid'];
+date_default_timezone_set('America/Los_Angeles');
+$_SESSION['today'] = date("D");
+$show = $_SESSION['show'];
 
 ?>
 
@@ -82,12 +86,8 @@ $gid = $_SESSION['gid'];
 
   	<div class="col-md-6">
        	<h3 class="lg-txt" id="today"></h3>
-        <!--
-        <?php
-          //include 'getworkoutandgoals.php'
-        ?>
-        <h4><?php //echo $param; ?></h4>
-       -->
+        
+        <?php printResult($show)?>
         
     </div>
 
