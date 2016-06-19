@@ -20,7 +20,7 @@ session_start();
         }
     }
 
-    $stid0 = oci_parse($db_conn, "select fullname, gymBro.gid, phone from gymBro, trains where gymBro.gid = trains.gid and trains.pid = :bind0");
+    $stid0 = oci_parse($db_conn, "select distinct fullname, gymBro.gid, phone from gymBro, trains where gymBro.gid = trains.gid and trains.pid = :bind0");
     oci_bind_by_name($stid0, ":bind0", $_SESSION['pid']);
     oci_execute($stid0);
     $_SESSION['show'] = $stid0;

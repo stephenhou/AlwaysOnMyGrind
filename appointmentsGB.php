@@ -24,7 +24,7 @@
     }
     if ($db_conn) {
         $stid = oci_parse($db_conn,
-                                  "select personalTrainer.fullname, TO_CHAR(trains.apptDate, 'DD-MM-YYYY'), trains.apptTime from personalTrainer, trains where trains.gid = :bind0 and personalTrainer.pid = trains.pid and trains.apptDate >= TRUNC(SYSDATE)");
+                                  "select personalTrainer.fullname, TO_CHAR(trains.apptDate, 'DD-MM-YYYY'), trains.apptTime from personalTrainer, trains where trains.gid = :bind0 and personalTrainer.pid = trains.pid and trains.apptDate >= TRUNC(SYSDATE) order by trains.apptDate asc");
         // Later implement where clause it only shows apptDate that is either today's date or later.
         oci_bind_by_name($stid, ":bind0", $_SESSION['gid']);
         oci_execute($stid);

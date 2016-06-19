@@ -146,15 +146,15 @@ insert into gymBro values
 	( 20000004, 'Kevin Hart', 'kevin_hart', 'password4', 'M', 36, 6045798123, 'kevhart@gmail.com', 92.3);
 
 insert into trains values
-	( TO_DATE('31-MAY-2016', 'DD-MM-YYYY'), '14:30', 'good', 5, 'bench 500 or dont come back', 10000000, 20000000);
+	( TO_DATE('14-JUNE-2016', 'DD-MM-YYYY'), '14:30', 'good', 5, 'bench 500 or dont come back', 10000000, 20000004);
 insert into trains values
-	( TO_DATE('31-MAY-2016', 'DD-MM-YYYY'), '15:30', 'good', 5, 'bench 500 or dont come back', 10000000, 20000001);
+	( TO_DATE('16-JUNE-2016', 'DD-MM-YYYY'), '15:30', 'good', 5, 'bench 500 or dont come back', 10000000, 20000004);
 insert into trains values
-	( TO_DATE('31-MAY-2016', 'DD-MM-YYYY'), '16:30', 'good', 5, 'bench 500 or dont come back', 10000000, 20000002);
+	( TO_DATE('20-JUNE-2016', 'DD-MM-YYYY'), '16:30', 'good', 5, 'bench 500 or dont come back', 10000000, 20000004);
 insert into trains values
-	( TO_DATE('31-MAY-2016', 'DD-MM-YYYY'), '17:30', 'good', 5, 'bench 500 or dont come back', 10000000, 20000003);
+	( TO_DATE('30-JUNE-2016', 'DD-MM-YYYY'), '17:30', 'good', 5, 'bench 500 or dont come back', 10000000, 20000004);
 insert into trains values
-	( TO_DATE('31-MAY-2016', 'DD-MM-YYYY'), '18:30', 'good', 5, 'bench 500 or dont come back', 10000000, 20000004);
+	( TO_DATE('31-JULY-2016', 'DD-MM-YYYY'), '18:30', 'good', 5, 'bench 500 or dont come back', 10000000, 20000004);
 
 insert into workout values (30000000);
 insert into workout values (30000001);
@@ -295,25 +295,25 @@ insert into involves values ('bike', 'Bike');
 insert into involves values ('water', 'Swimming');
 
 insert into dayOfWorkout values
-( 'SUN', 30000000, 40000000);
+( 'Sun', 30000000, 40000000);
 insert into dayOfWorkout values
-( 'MON', 30000001, 40000001);
+( 'Mon', 30000001, 40000001);
 insert into dayOfWorkout values
-( 'TUE', 30000002, 40000002);
+( 'Tue', 30000002, 40000002);
 insert into dayOfWorkout values
-( 'WED', 30000003, 40000003);
+( 'Wed', 30000003, 40000003);
 insert into dayOfWorkout values
-( 'THU', 30000004, 40000004);
+( 'Thu', 30000004, 40000004);
 insert into dayOfWorkout values
-( 'SUN', 30000000, 50000000);
+( 'Sun', 30000000, 50000000);
 insert into dayOfWorkout values
-( 'MON', 30000001, 50000001);
+( 'Mon', 30000001, 50000001);
 insert into dayOfWorkout values
-( 'TUE', 30000002, 50000002);
+( 'Tue', 30000002, 50000002);
 insert into dayOfWorkout values
-( 'WED', 30000003, 50000003);
+( 'Wed', 30000003, 50000003);
 insert into dayOfWorkout values
-( 'THU', 30000004, 50000004);
+( 'Thu', 30000004, 50000004);
 
 insert into pt_does_dayOfWorkout values
 ( 30000000, 40000000, 10000000, TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'));
@@ -338,12 +338,12 @@ insert into g_does_dayOfWorkout values
 ( 30000004, 50000004, 20000004, TO_DATE('16-JUNE-2016', 'DD-MM-YYYY'));
 
 insert into dayOfWorkoutDate values
-( TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 'SUN');
+( TO_DATE('12-JUNE-2016', 'DD-MM-YYYY'), 'Sun');
 insert into dayOfWorkoutDate values
-( TO_DATE('13-JUNE-2016', 'DD-MM-YYYY'), 'MON');
+( TO_DATE('13-JUNE-2016', 'DD-MM-YYYY'), 'Mon');
 insert into dayOfWorkoutDate values
-( TO_DATE('14-JUNE-2016', 'DD-MM-YYYY'), 'TUE');
+( TO_DATE('14-JUNE-2016', 'DD-MM-YYYY'), 'Tue');
 insert into dayOfWorkoutDate values
-( TO_DATE('15-JUNE-2016', 'DD-MM-YYYY'), 'WED');
+( TO_DATE('15-JUNE-2016', 'DD-MM-YYYY'), 'Wed');
 insert into dayOfWorkoutDate values
-( TO_DATE('16-JUNE-2016', 'DD-MM-YYYY'), 'THU');
+( TO_DATE('16-JUNE-2016', 'DD-MM-YYYY'), 'Thu');
